@@ -1,0 +1,235 @@
+/* Greenhouse Theme Animations */
+/* Living plants - leaf patterns, growth animations, organic curves */
+
+/* Plant unfurling growth */
+@keyframes greenhouse-grow {
+  0% {
+    transform: scaleY(0) translateY(10px);
+    opacity: 0;
+  }
+  60% {
+    transform: scaleY(1.05) translateY(-2px);
+  }
+  100% {
+    transform: scaleY(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Gentle breeze sway */
+@keyframes greenhouse-sway {
+  0%, 100% {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+/* Dew drop shimmer */
+@keyframes greenhouse-dew {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Photosynthesis green glow pulse */
+@keyframes greenhouse-photosynthesis {
+  0%, 100% {
+    box-shadow: 0 0 15px hsl(140, 40%, 35%, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px hsl(140, 50%, 40%, 0.5);
+  }
+}
+
+/* Morning mist fade */
+@keyframes greenhouse-mist {
+  0% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Tendril curl */
+@keyframes greenhouse-tendril {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Leaf rustle */
+@keyframes greenhouse-rustle {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(2deg) scale(1.02);
+  }
+  75% {
+    transform: rotate(-2deg) scale(0.98);
+  }
+}
+
+/* Utility classes */
+.greenhouse-grow {
+  transform-origin: bottom center;
+  animation: greenhouse-grow 0.6s ease-out forwards;
+}
+
+.greenhouse-sway {
+  animation: greenhouse-sway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.greenhouse-dew-drop {
+  position: relative;
+}
+
+.greenhouse-dew-drop::after {
+  content: '💧';
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 0.5em;
+  animation: greenhouse-dew 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.greenhouse-frosted-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.greenhouse-organic-border {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  transition: border-radius 0.5s ease;
+}
+
+.greenhouse-organic-border:hover {
+  border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+}
+
+/* Leaf vein pattern */
+.greenhouse-leaf-veins {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M50,0 L50,100' stroke='rgba(255,255,255,0.1)' stroke-width='1' fill='none'/%3E%3Cpath d='M50,20 L20,40' stroke='rgba(255,255,255,0.08)' stroke-width='0.5' fill='none'/%3E%3Cpath d='M50,20 L80,40' stroke='rgba(255,255,255,0.08)' stroke-width='0.5' fill='none'/%3E%3Cpath d='M50,50 L25,70' stroke='rgba(255,255,255,0.08)' stroke-width='0.5' fill='none'/%3E%3Cpath d='M50,50 L75,70' stroke='rgba(255,255,255,0.08)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+  background-size: 50px 50px;
+}
+
+/* Photosynthesis glow */
+.greenhouse-photosynthesis {
+  animation: greenhouse-photosynthesis 3s ease-in-out infinite;
+}
+
+/* Morning mist container */
+.greenhouse-mist-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.greenhouse-mist-container::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 100%
+  );
+  animation: greenhouse-mist 5s ease-out infinite;
+  pointer-events: none;
+}
+
+/* Natural gradient */
+.greenhouse-gradient {
+  background: linear-gradient(
+    180deg,
+    hsl(140, 35%, 45%) 0%,
+    hsl(140, 40%, 35%) 100%
+  );
+}
+
+/* Chlorophyll glow */
+.greenhouse-chlorophyll {
+  box-shadow:
+    0 4px 15px hsl(140, 40%, 35%, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.greenhouse-chlorophyll:hover {
+  box-shadow:
+    0 8px 25px hsl(140, 45%, 40%, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Terracotta pot base */
+.greenhouse-pot {
+  background: linear-gradient(
+    180deg,
+    hsl(15, 50%, 45%) 0%,
+    hsl(15, 45%, 35%) 100%
+  );
+  border-radius: 0 0 20% 20%;
+}
+
+/* Rustle on hover */
+.greenhouse-rustle:hover {
+  animation: greenhouse-rustle 0.5s ease-in-out;
+}
+
+/* Sprout icon */
+.greenhouse-sprout::before {
+  content: '🌱';
+  margin-right: 0.5em;
+}
+
+/* Water droplet trail */
+.greenhouse-water-trail {
+  position: relative;
+}
+
+.greenhouse-water-trail::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: hsl(200, 80%, 60%);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+
+.greenhouse-water-trail:active::after {
+  opacity: 1;
+  animation: greenhouse-dew 0.5s ease-out;
+}
+
+/* Active state - leaf press */
+.greenhouse-press:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 10px hsl(140, 40%, 35%, 0.2);
+}
+
+/* Grow entrance animation */
+.greenhouse-entrance {
+  animation: greenhouse-grow 0.5s ease-out forwards;
+}

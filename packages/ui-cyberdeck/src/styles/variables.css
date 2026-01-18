@@ -1,0 +1,30 @@
+/* Cyberdeck Theme - Neon-lit hacker aesthetic */
+/* Terminal black with matrix green, blinking cursors */
+
+@layer base {
+  :root, [data-theme="cyberdeck"] {
+    --background: 0 0% 5%;
+    --foreground: 120 100% 62%;
+    --card: 0 0% 8%;
+    --card-foreground: 120 100% 62%;
+    --primary: 120 100% 50%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 120 100% 62%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 120 40% 45%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 120 60% 25%;
+    --input: 0 0% 10%;
+    --ring: 120 100% 50%;
+    --radius: 0rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+}
+
+/* Theme Signature: cursor-blink neon-glow */

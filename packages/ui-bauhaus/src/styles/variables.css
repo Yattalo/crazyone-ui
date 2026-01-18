@@ -1,0 +1,30 @@
+/* Bauhaus Theme - Form follows function, beautifully */
+/* Pure primary colors, geometric shapes, clean lines */
+
+@layer base {
+  :root, [data-theme="bauhaus"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 60 100% 50%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 220 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 5%;
+    --input: 0 0% 95%;
+    --ring: 0 100% 50%;
+    --radius: 0rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Futura', 'Century Gothic', sans-serif;
+  }
+}
+
+/* Theme Signature: geometric-overlays primary-blocks */

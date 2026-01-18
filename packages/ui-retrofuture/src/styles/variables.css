@@ -1,0 +1,30 @@
+/* Retrofuture Theme - Tomorrow as imagined yesterday */
+/* Atomic age optimism, starbursts, long shadows */
+
+@layer base {
+  :root, [data-theme="retrofuture"] {
+    --background: 45 50% 94%;
+    --foreground: 210 50% 25%;
+    --card: 45 45% 97%;
+    --card-foreground: 210 50% 25%;
+    --primary: 210 55% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 95% 52%;
+    --secondary-foreground: 210 50% 15%;
+    --muted: 45 30% 88%;
+    --muted-foreground: 210 20% 45%;
+    --accent: 30 95% 52%;
+    --accent-foreground: 210 50% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 25% 75%;
+    --input: 45 35% 92%;
+    --ring: 210 55% 35%;
+    --radius: 0.5rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Futura', 'Avenir', sans-serif;
+  }
+}
+
+/* Theme Signature: starburst-shapes long-shadows */

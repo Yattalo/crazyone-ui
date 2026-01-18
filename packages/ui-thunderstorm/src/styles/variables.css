@@ -1,0 +1,30 @@
+/* Thunderstorm Theme - Electric tension, dramatic release */
+/* Storm cloud gray with lightning yellow and rain silver */
+
+@layer base {
+  :root, [data-theme="thunderstorm"] {
+    --background: 240 30% 12%;
+    --foreground: 210 15% 85%;
+    --card: 240 25% 16%;
+    --card-foreground: 210 15% 85%;
+    --primary: 55 95% 60%;
+    --primary-foreground: 240 30% 10%;
+    --secondary: 210 10% 60%;
+    --secondary-foreground: 240 30% 12%;
+    --muted: 240 20% 22%;
+    --muted-foreground: 210 10% 55%;
+    --accent: 210 10% 60%;
+    --accent-foreground: 240 30% 12%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 15% 30%;
+    --input: 240 20% 18%;
+    --ring: 55 95% 60%;
+    --radius: 0.125rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Oswald', 'Bebas Neue', sans-serif;
+  }
+}
+
+/* Theme Signature: flash-animation tension-shadows */

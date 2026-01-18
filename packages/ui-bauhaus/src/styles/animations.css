@@ -1,0 +1,196 @@
+/* Bauhaus Theme Animations */
+/* Geometric precision - strict shapes, primary colors, grid discipline */
+
+/* Block clip-path reveal */
+@keyframes bauhaus-grid-reveal {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Color block translate */
+@keyframes bauhaus-block-shift {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+/* Primary color cycle: red → yellow → blue */
+@keyframes bauhaus-primary-cycle {
+  0%, 100% {
+    background-color: hsl(0, 100%, 50%);
+  }
+  33% {
+    background-color: hsl(60, 100%, 50%);
+  }
+  66% {
+    background-color: hsl(220, 100%, 50%);
+  }
+}
+
+/* Hard geometric pulse */
+@keyframes bauhaus-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Shadow offset animation */
+@keyframes bauhaus-shadow-dance {
+  0%, 100% {
+    box-shadow: 4px 4px 0 0 hsl(0, 0%, 0%);
+  }
+  25% {
+    box-shadow: 6px 4px 0 0 hsl(0, 0%, 0%);
+  }
+  50% {
+    box-shadow: 6px 6px 0 0 hsl(0, 0%, 0%);
+  }
+  75% {
+    box-shadow: 4px 6px 0 0 hsl(0, 0%, 0%);
+  }
+}
+
+/* Circle morph */
+@keyframes bauhaus-circle-morph {
+  0%, 100% {
+    border-radius: 0;
+  }
+  50% {
+    border-radius: 50%;
+  }
+}
+
+/* Utility classes */
+.bauhaus-block-red {
+  background-color: hsl(0, 100%, 50%);
+  color: white;
+}
+
+.bauhaus-block-yellow {
+  background-color: hsl(60, 100%, 50%);
+  color: black;
+}
+
+.bauhaus-block-blue {
+  background-color: hsl(220, 100%, 50%);
+  color: white;
+}
+
+.bauhaus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0;
+}
+
+.bauhaus-offset-shadow {
+  box-shadow: 4px 4px 0 0 black;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.bauhaus-offset-shadow:hover {
+  box-shadow: 6px 6px 0 0 black;
+  transform: translate(-2px, -2px);
+}
+
+.bauhaus-offset-shadow:active {
+  box-shadow: 2px 2px 0 0 black;
+  transform: translate(0, 0);
+}
+
+/* Geometric shapes */
+.bauhaus-circle {
+  border-radius: 50%;
+}
+
+.bauhaus-triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.bauhaus-square {
+  border-radius: 0;
+  aspect-ratio: 1;
+}
+
+/* Grid overlay pattern */
+.bauhaus-grid-overlay {
+  position: relative;
+}
+
+.bauhaus-grid-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* Strict typography */
+.bauhaus-type {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Color block animation on hover */
+.bauhaus-color-shift:hover {
+  animation: bauhaus-primary-cycle 3s ease infinite;
+}
+
+/* Geometric reveal */
+.bauhaus-reveal {
+  animation: bauhaus-grid-reveal 0.5s ease-out forwards;
+}
+
+/* Dancing shadow on hover */
+.bauhaus-shadow-dance:hover {
+  animation: bauhaus-shadow-dance 1s ease-in-out infinite;
+}
+
+/* Hard border style */
+.bauhaus-border {
+  border: 4px solid black;
+}
+
+/* De Stijl inspired lines */
+.bauhaus-lines {
+  position: relative;
+}
+
+.bauhaus-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 4px;
+  height: 100%;
+  background: hsl(0, 100%, 50%);
+}
+
+.bauhaus-lines::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: hsl(220, 100%, 50%);
+}
+
+/* Active state - solid press */
+.bauhaus-press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 black;
+}

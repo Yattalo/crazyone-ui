@@ -1,0 +1,30 @@
+/* Synthwave Theme - Chrome dreams, electric highways */
+/* Purple night sky with neon magenta and cyan */
+
+@layer base {
+  :root, [data-theme="synthwave"] {
+    --background: 270 60% 8%;
+    --foreground: 180 100% 95%;
+    --card: 270 50% 12%;
+    --card-foreground: 180 100% 95%;
+    --primary: 340 100% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 190 100% 50%;
+    --secondary-foreground: 270 50% 10%;
+    --muted: 270 30% 18%;
+    --muted-foreground: 270 20% 55%;
+    --accent: 190 100% 50%;
+    --accent-foreground: 270 50% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 340 50% 35%;
+    --input: 270 35% 15%;
+    --ring: 340 100% 58%;
+    --radius: 0rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Orbitron', 'Audiowide', sans-serif;
+  }
+}
+
+/* Theme Signature: horizon-grid neon-halos */

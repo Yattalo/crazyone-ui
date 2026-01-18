@@ -1,0 +1,203 @@
+/* Hologram Theme Animations */
+/* Tomorrow rendered today - iridescent gradients, prismatic color cycling */
+
+/* Prismatic color cycle */
+@keyframes hologram-prismatic {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(180deg);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Iridescent shimmer */
+@keyframes hologram-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Holographic flicker */
+@keyframes hologram-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
+  52% { opacity: 1; }
+  54% { opacity: 0.9; }
+  56% { opacity: 1; }
+}
+
+/* Projection scan line */
+@keyframes hologram-scan {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Depth layers parallax */
+@keyframes hologram-depth {
+  0%, 100% { transform: translateZ(0) rotateX(0deg); }
+  25% { transform: translateZ(10px) rotateX(2deg); }
+  50% { transform: translateZ(20px) rotateX(0deg); }
+  75% { transform: translateZ(10px) rotateX(-2deg); }
+}
+
+/* Spectral glow */
+@keyframes hologram-spectral-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 20px hsl(280 100% 70% / 0.5),
+      0 0 40px hsl(180 100% 60% / 0.3),
+      0 0 60px hsl(320 100% 65% / 0.2);
+  }
+  33% {
+    box-shadow:
+      0 0 20px hsl(180 100% 60% / 0.5),
+      0 0 40px hsl(320 100% 65% / 0.3),
+      0 0 60px hsl(280 100% 70% / 0.2);
+  }
+  66% {
+    box-shadow:
+      0 0 20px hsl(320 100% 65% / 0.5),
+      0 0 40px hsl(280 100% 70% / 0.3),
+      0 0 60px hsl(180 100% 60% / 0.2);
+  }
+}
+
+/* Rainbow border flow */
+@keyframes hologram-border-flow {
+  0% { border-color: hsl(280 100% 70%); }
+  33% { border-color: hsl(180 100% 60%); }
+  66% { border-color: hsl(320 100% 65%); }
+  100% { border-color: hsl(280 100% 70%); }
+}
+
+/* Utility classes */
+.hologram-prismatic {
+  background: linear-gradient(
+    90deg,
+    hsl(280 100% 70%),
+    hsl(180 100% 60%),
+    hsl(320 100% 65%),
+    hsl(280 100% 70%)
+  );
+  background-size: 200% 100%;
+  animation: hologram-prismatic 8s ease infinite;
+}
+
+.hologram-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(280 100% 70% / 0.4) 25%,
+    hsl(180 100% 60% / 0.4) 50%,
+    hsl(320 100% 65% / 0.4) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: hologram-shimmer 3s linear infinite;
+}
+
+.hologram-flicker {
+  animation: hologram-flicker 4s ease-in-out infinite;
+}
+
+.hologram-glow {
+  animation: hologram-spectral-glow 4s ease-in-out infinite;
+}
+
+.hologram-border {
+  animation: hologram-border-flow 6s linear infinite;
+}
+
+.hologram-scan {
+  position: relative;
+  overflow: hidden;
+}
+
+.hologram-scan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(280 100% 70%),
+    hsl(180 100% 60%),
+    hsl(320 100% 65%),
+    transparent
+  );
+  animation: hologram-scan 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Iridescent text */
+.hologram-text {
+  background: linear-gradient(
+    90deg,
+    hsl(280 100% 70%),
+    hsl(180 100% 60%),
+    hsl(320 100% 65%),
+    hsl(280 100% 70%)
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hologram-prismatic 6s ease infinite;
+}
+
+/* Projection lines effect */
+.hologram-projection {
+  position: relative;
+}
+
+.hologram-projection::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    hsl(280 100% 70% / 0.03) 2px,
+    hsl(280 100% 70% / 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* Glass refraction effect */
+.hologram-refract {
+  backdrop-filter: blur(10px) saturate(180%);
+  background: linear-gradient(
+    135deg,
+    hsl(280 100% 70% / 0.1),
+    hsl(180 100% 60% / 0.1),
+    hsl(320 100% 65% / 0.1)
+  );
+}
+
+/* Hover iridescence boost */
+.hologram-hover-boost:hover {
+  filter: saturate(1.3) brightness(1.1);
+  transition: filter 0.3s ease;
+}

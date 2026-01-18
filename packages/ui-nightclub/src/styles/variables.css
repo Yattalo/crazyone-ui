@@ -1,0 +1,30 @@
+/* Nightclub Theme - 3AM, bass drops heavy */
+/* Blackout with laser pink and strobe gold, pulsing text */
+
+@layer base {
+  :root, [data-theme="nightclub"] {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+    --primary: 330 100% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 100% 50%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 45 100% 50%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 330 50% 30%;
+    --input: 0 0% 10%;
+    --ring: 330 100% 54%;
+    --radius: 0.25rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Bebas Neue', 'Impact', sans-serif;
+  }
+}
+
+/* Theme Signature: pulse-animation club-lights */

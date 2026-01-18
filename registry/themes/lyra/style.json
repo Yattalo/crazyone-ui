@@ -1,0 +1,52 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "lyra",
+  "type": "registry:style",
+  "title": "Lyra Theme",
+  "description": "Vibrant, colorful theme with purple and pink gradients",
+  "cssVars": {
+    "light": {
+      "background": "270 50% 99%",
+      "foreground": "270 50% 5%",
+      "card": "270 50% 99%",
+      "card-foreground": "270 50% 5%",
+      "popover": "270 50% 99%",
+      "popover-foreground": "270 50% 5%",
+      "primary": "262.1 83.3% 57.8%",
+      "primary-foreground": "0 0% 100%",
+      "secondary": "270 30% 94%",
+      "secondary-foreground": "270 50% 10%",
+      "muted": "270 30% 94%",
+      "muted-foreground": "270 10% 45%",
+      "accent": "326.1 73.3% 57.1%",
+      "accent-foreground": "0 0% 100%",
+      "destructive": "0 84.2% 60.2%",
+      "destructive-foreground": "0 0% 100%",
+      "border": "270 20% 88%",
+      "input": "270 20% 88%",
+      "ring": "262.1 83.3% 57.8%",
+      "radius": "0.5rem"
+    },
+    "dark": {
+      "background": "270 50% 5%",
+      "foreground": "270 20% 95%",
+      "card": "270 50% 5%",
+      "card-foreground": "270 20% 95%",
+      "popover": "270 50% 5%",
+      "popover-foreground": "270 20% 95%",
+      "primary": "263.4 70% 50.4%",
+      "primary-foreground": "0 0% 100%",
+      "secondary": "270 30% 12%",
+      "secondary-foreground": "270 20% 95%",
+      "muted": "270 30% 12%",
+      "muted-foreground": "270 10% 55%",
+      "accent": "326.1 73.3% 50%",
+      "accent-foreground": "0 0% 100%",
+      "destructive": "0 62.8% 30.6%",
+      "destructive-foreground": "0 0% 100%",
+      "border": "270 30% 18%",
+      "input": "270 30% 18%",
+      "ring": "263.4 70% 50.4%"
+    }
+  }
+}

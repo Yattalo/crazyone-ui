@@ -1,0 +1,30 @@
+/* Bioluminescent Theme - Deep ocean, living light */
+/* Abyss black with cyan and jellyfish purple glow */
+
+@layer base {
+  :root, [data-theme="bioluminescent"] {
+    --background: 195 80% 5%;
+    --foreground: 170 100% 85%;
+    --card: 195 70% 8%;
+    --card-foreground: 170 100% 85%;
+    --primary: 170 100% 60%;
+    --primary-foreground: 195 80% 5%;
+    --secondary: 280 80% 65%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 195 50% 15%;
+    --muted-foreground: 170 40% 50%;
+    --accent: 280 80% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 195 50% 20%;
+    --input: 195 60% 12%;
+    --ring: 170 100% 60%;
+    --radius: 1.5rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Outfit', 'Sora', sans-serif;
+  }
+}
+
+/* Theme Signature: glow-pulse organic-flow */

@@ -1,0 +1,30 @@
+/* Hologram Theme - Tomorrow rendered today */
+/* Void black with iridescent spectrum gradients */
+
+@layer base {
+  :root, [data-theme="hologram"] {
+    --background: 240 40% 6%;
+    --foreground: 270 100% 95%;
+    --card: 240 35% 10%;
+    --card-foreground: 270 100% 95%;
+    --primary: 280 100% 70%;
+    --primary-foreground: 240 40% 6%;
+    --secondary: 180 100% 60%;
+    --secondary-foreground: 240 40% 6%;
+    --muted: 240 25% 18%;
+    --muted-foreground: 270 30% 55%;
+    --accent: 320 100% 65%;
+    --accent-foreground: 240 40% 6%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 280 40% 30%;
+    --input: 240 30% 14%;
+    --ring: 280 100% 70%;
+    --radius: 0.75rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Space Grotesk', 'Space Mono', sans-serif;
+  }
+}
+
+/* Theme Signature: iridescent-borders prismatic-glow */

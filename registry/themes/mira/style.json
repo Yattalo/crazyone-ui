@@ -1,0 +1,52 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mira",
+  "type": "registry:style",
+  "title": "Mira Theme",
+  "description": "Classic, corporate theme with navy blue tones",
+  "cssVars": {
+    "light": {
+      "background": "210 20% 99%",
+      "foreground": "222 47% 11%",
+      "card": "0 0% 100%",
+      "card-foreground": "222 47% 11%",
+      "popover": "0 0% 100%",
+      "popover-foreground": "222 47% 11%",
+      "primary": "222 47% 25%",
+      "primary-foreground": "210 40% 98%",
+      "secondary": "210 20% 96%",
+      "secondary-foreground": "222 47% 11%",
+      "muted": "210 20% 96%",
+      "muted-foreground": "215 16% 47%",
+      "accent": "210 20% 96%",
+      "accent-foreground": "222 47% 11%",
+      "destructive": "0 72% 51%",
+      "destructive-foreground": "210 40% 98%",
+      "border": "214 32% 91%",
+      "input": "214 32% 91%",
+      "ring": "222 47% 25%",
+      "radius": "0.375rem"
+    },
+    "dark": {
+      "background": "222 47% 8%",
+      "foreground": "210 40% 98%",
+      "card": "222 47% 11%",
+      "card-foreground": "210 40% 98%",
+      "popover": "222 47% 11%",
+      "popover-foreground": "210 40% 98%",
+      "primary": "210 40% 70%",
+      "primary-foreground": "222 47% 11%",
+      "secondary": "217 33% 17%",
+      "secondary-foreground": "210 40% 98%",
+      "muted": "217 33% 17%",
+      "muted-foreground": "215 20% 65%",
+      "accent": "217 33% 17%",
+      "accent-foreground": "210 40% 98%",
+      "destructive": "0 62.8% 30.6%",
+      "destructive-foreground": "210 40% 98%",
+      "border": "217 33% 17%",
+      "input": "217 33% 17%",
+      "ring": "210 40% 70%"
+    }
+  }
+}

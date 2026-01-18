@@ -1,0 +1,30 @@
+/* Greenhouse Theme - Glass walls, growing things */
+/* Morning mist with forest green and sunlight yellow */
+
+@layer base {
+  :root, [data-theme="greenhouse"] {
+    --background: 150 30% 97%;
+    --foreground: 140 35% 20%;
+    --card: 150 20% 99%;
+    --card-foreground: 140 35% 20%;
+    --primary: 140 40% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 90% 60%;
+    --secondary-foreground: 45 60% 15%;
+    --muted: 150 20% 92%;
+    --muted-foreground: 140 15% 45%;
+    --accent: 45 90% 60%;
+    --accent-foreground: 45 60% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 140 20% 85%;
+    --input: 150 15% 94%;
+    --ring: 140 40% 35%;
+    --radius: 1rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
+  }
+}
+
+/* Theme Signature: frosted-glass organic-shapes */

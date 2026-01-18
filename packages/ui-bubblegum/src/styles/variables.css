@@ -1,0 +1,30 @@
+/* Bubblegum Theme - Dopamine hits, zero regrets */
+/* Bouncy pink and yellow, playful squish effects */
+
+@layer base {
+  :root, [data-theme="bubblegum"] {
+    --background: 340 100% 97%;
+    --foreground: 340 60% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 340 60% 20%;
+    --primary: 340 82% 72%;
+    --primary-foreground: 340 60% 15%;
+    --secondary: 45 100% 68%;
+    --secondary-foreground: 45 60% 15%;
+    --muted: 340 40% 92%;
+    --muted-foreground: 340 20% 50%;
+    --accent: 45 100% 68%;
+    --accent-foreground: 45 60% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 340 40% 85%;
+    --input: 340 40% 90%;
+    --ring: 340 82% 72%;
+    --radius: 1rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Nunito', 'Quicksand', sans-serif;
+  }
+}
+
+/* Theme Signature: squish-hover bounce-animations */

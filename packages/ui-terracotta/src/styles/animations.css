@@ -1,0 +1,194 @@
+/* Terracotta Theme Animations */
+/* Mediterranean warmth - clay textures, kiln warmth, organic shapes */
+
+/* Clay press animation */
+@keyframes terracotta-press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.97) translateY(2px);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Warm kiln emanation */
+@keyframes terracotta-kiln-glow {
+  0%, 100% {
+    box-shadow: 0 4px 15px hsl(15, 60%, 45%, 0.2);
+  }
+  50% {
+    box-shadow: 0 6px 25px hsl(15, 65%, 50%, 0.35);
+  }
+}
+
+/* Tile appearance animation */
+@keyframes terracotta-tile-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) rotateX(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+}
+
+/* Gentle breathing size fluctuation */
+@keyframes terracotta-breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+}
+
+/* Crack pattern spread */
+@keyframes terracotta-crack-spread {
+  0% {
+    background-size: 0% 100%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+/* Warm shimmer */
+@keyframes terracotta-shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Utility classes */
+.terracotta-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-blend-mode: overlay;
+  background-size: 100px;
+}
+
+.terracotta-tile-border {
+  border: 2px solid hsl(15, 50%, 40%);
+  border-radius: 4px;
+  position: relative;
+}
+
+.terracotta-tile-border::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid hsl(15, 45%, 50%, 0.3);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.terracotta-organic-shadow {
+  box-shadow:
+    0 4px 0 hsl(15, 50%, 35%),
+    0 6px 15px hsl(15, 50%, 35%, 0.3);
+  transition: all 0.2s ease;
+}
+
+.terracotta-organic-shadow:hover {
+  box-shadow:
+    0 6px 0 hsl(15, 50%, 35%),
+    0 10px 25px hsl(15, 50%, 35%, 0.4);
+  transform: translateY(-2px);
+}
+
+.terracotta-organic-shadow:active {
+  box-shadow:
+    0 2px 0 hsl(15, 50%, 35%),
+    0 4px 10px hsl(15, 50%, 35%, 0.2);
+  transform: translateY(2px);
+}
+
+.terracotta-kiln {
+  animation: terracotta-kiln-glow 3s ease-in-out infinite;
+}
+
+/* Mosaic pattern */
+.terracotta-mosaic {
+  background:
+    linear-gradient(135deg, hsl(15, 60%, 52%) 25%, transparent 25%),
+    linear-gradient(225deg, hsl(15, 60%, 52%) 25%, transparent 25%),
+    linear-gradient(45deg, hsl(20, 55%, 58%) 25%, transparent 25%),
+    linear-gradient(315deg, hsl(20, 55%, 58%) 25%, hsl(15, 55%, 48%) 25%);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 0, 10px -10px, 0 10px;
+}
+
+/* Warm gradient */
+.terracotta-warm-gradient {
+  background: linear-gradient(
+    180deg,
+    hsl(15, 60%, 55%) 0%,
+    hsl(15, 55%, 48%) 100%
+  );
+}
+
+/* Crackle glaze effect */
+.terracotta-crackle {
+  position: relative;
+}
+
+.terracotta-crackle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M10,20 L30,10 L50,25 L70,5 L90,30' stroke='rgba(0,0,0,0.05)' fill='none' stroke-width='0.5'/%3E%3Cpath d='M5,50 L25,45 L45,60 L65,40 L95,55' stroke='rgba(0,0,0,0.05)' fill='none' stroke-width='0.5'/%3E%3Cpath d='M15,80 L35,85 L55,70 L75,90 L85,75' stroke='rgba(0,0,0,0.05)' fill='none' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Mediterranean curves */
+.terracotta-arch {
+  border-radius: 50% 50% 4px 4px;
+}
+
+/* Warm text shadow */
+.terracotta-text-warm {
+  text-shadow: 0 2px 4px hsl(15, 60%, 40%, 0.3);
+}
+
+/* Reveal animation */
+.terracotta-reveal {
+  animation: terracotta-tile-reveal 0.5s ease-out forwards;
+}
+
+/* Shimmer on hover */
+.terracotta-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.terracotta-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+}
+
+.terracotta-shimmer:hover::after {
+  animation: terracotta-shimmer 1s ease forwards;
+}
+
+/* Active state - clay press */
+.terracotta-press:active {
+  animation: terracotta-press 0.3s ease;
+}

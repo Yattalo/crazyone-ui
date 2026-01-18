@@ -1,0 +1,235 @@
+/* Arctic Theme Animations */
+/* Frozen precision, aurora magic - ice crystals, northern lights */
+
+/* Northern lights color shift */
+@keyframes arctic-aurora {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(30deg);
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+}
+
+/* Ice shimmer rotation */
+@keyframes arctic-crystal {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Frost spread inward */
+@keyframes arctic-frost {
+  0% {
+    box-shadow: inset 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: inset 0 0 20px 5px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Cold breath mist */
+@keyframes arctic-breath {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Snowfall particle */
+@keyframes arctic-snowfall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Ice crack effect */
+@keyframes arctic-crack {
+  0% {
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Utility classes */
+.arctic-aurora-bg {
+  background: linear-gradient(
+    135deg,
+    hsl(195, 95%, 60%),
+    hsl(210, 90%, 70%),
+    hsl(280, 90%, 55%),
+    hsl(195, 95%, 60%)
+  );
+  background-size: 200% 200%;
+  animation: arctic-aurora 8s ease infinite;
+}
+
+.arctic-frost-border {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.arctic-frost-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: arctic-frost 1s ease-out forwards;
+  pointer-events: none;
+}
+
+.arctic-crystal-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.arctic-crystal-shine::after {
+  content: '✦';
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: 0.6em;
+  color: rgba(255, 255, 255, 0.8);
+  animation: arctic-crystal 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.arctic-hexagon {
+  clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+}
+
+.arctic-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Ice gradient */
+.arctic-ice-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(100, 200, 255, 0.1) 100%
+  );
+}
+
+/* Aurora glow shadow */
+.arctic-aurora-glow {
+  box-shadow:
+    0 0 20px rgba(100, 200, 255, 0.3),
+    0 0 40px rgba(139, 92, 246, 0.2);
+}
+
+.arctic-aurora-glow:hover {
+  box-shadow:
+    0 0 30px rgba(100, 200, 255, 0.5),
+    0 0 60px rgba(139, 92, 246, 0.3);
+}
+
+/* Breath mist effect */
+.arctic-breath-effect {
+  position: relative;
+}
+
+.arctic-breath-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  animation: arctic-breath 3s ease-out infinite;
+  pointer-events: none;
+}
+
+/* Frozen text effect */
+.arctic-frozen-text {
+  text-shadow:
+    0 0 10px rgba(100, 200, 255, 0.5),
+    0 0 20px rgba(100, 200, 255, 0.3);
+}
+
+/* Snowflake container */
+.arctic-snow-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.arctic-snow-container::before,
+.arctic-snow-container::after {
+  content: '❄';
+  position: absolute;
+  font-size: 0.5em;
+  color: rgba(255, 255, 255, 0.5);
+  animation: arctic-snowfall 5s linear infinite;
+  pointer-events: none;
+}
+
+.arctic-snow-container::before {
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.arctic-snow-container::after {
+  right: 20%;
+  animation-delay: 2.5s;
+}
+
+/* Active state - ice crack */
+.arctic-press:active {
+  animation: arctic-crack 0.3s ease-out forwards;
+  transform: scale(0.98);
+}

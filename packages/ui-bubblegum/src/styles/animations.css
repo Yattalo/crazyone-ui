@@ -1,0 +1,189 @@
+/* Bubblegum Theme Animations */
+/* Dopamine hits, zero regrets - squish physics, bounce animations, pill shapes */
+
+/* Bounce on click */
+@keyframes bubblegum-bounce {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.98); }
+  90% { transform: scale(1.02); }
+}
+
+/* Squish on hover */
+@keyframes bubblegum-squish {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.05, 0.95); }
+}
+
+/* Jelly wobble */
+@keyframes bubblegum-wobble {
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(-3deg); }
+  30% { transform: rotate(2deg); }
+  45% { transform: rotate(-1deg); }
+  60% { transform: rotate(0.5deg); }
+  75% { transform: rotate(-0.25deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Pop entrance */
+@keyframes bubblegum-pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Float with subtle rotation */
+@keyframes bubblegum-float {
+  0%, 100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+/* Candy gradient shift */
+@keyframes bubblegum-candy-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Sparkle twinkle */
+@keyframes bubblegum-sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+/* Heart beat pulse */
+@keyframes bubblegum-heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  56% { transform: scale(1); }
+}
+
+/* Utility classes */
+.bubblegum-bounce {
+  animation: bubblegum-bounce 0.6s ease;
+}
+
+.bubblegum-bounce-hover:hover {
+  animation: bubblegum-bounce 0.4s ease;
+}
+
+.bubblegum-squish:hover {
+  animation: bubblegum-squish 0.3s ease;
+}
+
+.bubblegum-squish-active:active {
+  transform: scale(0.95, 1.02);
+  transition: transform 0.1s ease;
+}
+
+.bubblegum-wobble {
+  animation: bubblegum-wobble 0.5s ease;
+}
+
+.bubblegum-wobble-hover:hover {
+  animation: bubblegum-wobble 0.6s ease;
+}
+
+.bubblegum-pop {
+  animation: bubblegum-pop-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.bubblegum-float {
+  animation: bubblegum-float 3s ease-in-out infinite;
+}
+
+.bubblegum-candy {
+  background: linear-gradient(
+    90deg,
+    hsl(340 82% 72%),
+    hsl(45 100% 68%),
+    hsl(340 82% 72%)
+  );
+  background-size: 200% 100%;
+  animation: bubblegum-candy-shift 4s ease infinite;
+}
+
+.bubblegum-heartbeat {
+  animation: bubblegum-heartbeat 1.5s ease infinite;
+}
+
+/* Sparkle container */
+.bubblegum-sparkle-container {
+  position: relative;
+}
+
+.bubblegum-sparkle-container::before,
+.bubblegum-sparkle-container::after {
+  content: '✦';
+  position: absolute;
+  font-size: 0.75em;
+  animation: bubblegum-sparkle 2s ease-in-out infinite;
+}
+
+.bubblegum-sparkle-container::before {
+  top: -5px;
+  left: -5px;
+  animation-delay: 0s;
+}
+
+.bubblegum-sparkle-container::after {
+  bottom: -5px;
+  right: -5px;
+  animation-delay: 1s;
+}
+
+/* Pill shadow with color */
+.bubblegum-shadow {
+  box-shadow:
+    0 4px 14px hsl(340 82% 72% / 0.3),
+    0 2px 6px hsl(45 100% 68% / 0.2);
+}
+
+.bubblegum-shadow:hover {
+  box-shadow:
+    0 8px 24px hsl(340 82% 72% / 0.4),
+    0 4px 12px hsl(45 100% 68% / 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Stretch on drag */
+.bubblegum-stretch:active {
+  transform: scaleX(1.02) scaleY(0.98);
+  transition: transform 0.1s ease-out;
+}
+
+/* Cute cursor */
+.bubblegum-cursor {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='18' font-size='16'%3E🍬%3C/text%3E%3C/svg%3E"), auto;
+}
+
+/* Button press feedback */
+.bubblegum-press:active {
+  animation: bubblegum-bounce 0.3s ease;
+  transform: scale(0.95);
+}

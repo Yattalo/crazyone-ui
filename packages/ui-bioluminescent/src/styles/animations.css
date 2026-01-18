@@ -1,0 +1,258 @@
+/* Bioluminescent Theme Animations */
+/* Deep sea glow - organic pulse rhythms, jellyfish transparency, bio patterns */
+
+/* Organic heartbeat pulse */
+@keyframes bioluminescent-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+    box-shadow: 0 0 20px hsl(170, 100%, 60%, 0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+    box-shadow: 0 0 40px hsl(170, 100%, 60%, 0.5);
+  }
+}
+
+/* Jellyfish drift movement */
+@keyframes bioluminescent-drift {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+/* Tendril wave motion */
+@keyframes bioluminescent-tendril {
+  0%, 100% {
+    transform: translateX(0) scaleY(1);
+  }
+  25% {
+    transform: translateX(2px) scaleY(1.02);
+  }
+  75% {
+    transform: translateX(-2px) scaleY(0.98);
+  }
+}
+
+/* Rising particles */
+@keyframes bioluminescent-particles {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+
+/* Glow intensify */
+@keyframes bioluminescent-intensify {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+    box-shadow: 0 0 20px currentColor;
+  }
+  50% {
+    filter: brightness(1.2) saturate(1.3);
+    box-shadow: 0 0 40px currentColor;
+  }
+}
+
+/* Cell membrane ripple */
+@keyframes bioluminescent-membrane {
+  0%, 100% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  25% {
+    border-radius: 58% 42% 63% 37% / 51% 52% 48% 49%;
+  }
+  50% {
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+  }
+  75% {
+    border-radius: 42% 58% 37% 63% / 52% 51% 49% 48%;
+  }
+}
+
+/* Deep sea shimmer */
+@keyframes bioluminescent-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Utility classes */
+.bioluminescent-pulse {
+  animation: bioluminescent-pulse 4s ease-in-out infinite;
+}
+
+.bioluminescent-drift {
+  animation: bioluminescent-drift 6s ease-in-out infinite;
+}
+
+.bioluminescent-jellyfish {
+  background: radial-gradient(
+    ellipse at 50% 30%,
+    hsl(170, 100%, 60%, 0.3) 0%,
+    hsl(170, 100%, 50%, 0.1) 50%,
+    transparent 70%
+  );
+  border-radius: 50% 50% 40% 40%;
+  animation: bioluminescent-drift 5s ease-in-out infinite;
+}
+
+.bioluminescent-particles {
+  position: relative;
+}
+
+.bioluminescent-particles::before,
+.bioluminescent-particles::after {
+  content: '•';
+  position: absolute;
+  font-size: 0.4em;
+  color: hsl(170, 100%, 70%);
+  animation: bioluminescent-particles 4s ease-out infinite;
+  pointer-events: none;
+}
+
+.bioluminescent-particles::before {
+  bottom: 0;
+  left: 30%;
+}
+
+.bioluminescent-particles::after {
+  bottom: 0;
+  right: 30%;
+  animation-delay: 2s;
+}
+
+.bioluminescent-membrane {
+  animation: bioluminescent-membrane 8s ease-in-out infinite;
+}
+
+/* Translucent glass effect */
+.bioluminescent-glass {
+  background: hsl(170, 100%, 60%, 0.1);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  border: 1px solid hsl(170, 100%, 60%, 0.2);
+}
+
+/* Glow aura */
+.bioluminescent-glow {
+  box-shadow:
+    0 0 20px hsl(170, 100%, 60%, 0.3),
+    0 0 40px hsl(170, 100%, 60%, 0.2),
+    inset 0 0 20px hsl(170, 100%, 60%, 0.1);
+}
+
+.bioluminescent-glow:hover {
+  animation: bioluminescent-intensify 2s ease-in-out infinite;
+}
+
+/* Deep ocean gradient */
+.bioluminescent-deep {
+  background: linear-gradient(
+    180deg,
+    hsl(220, 80%, 8%) 0%,
+    hsl(210, 90%, 5%) 100%
+  );
+}
+
+/* Tentacle pattern */
+.bioluminescent-tentacles {
+  position: relative;
+}
+
+.bioluminescent-tentacles::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 30px;
+  background: linear-gradient(
+    0deg,
+    hsl(170, 100%, 60%, 0.2) 0%,
+    transparent 100%
+  );
+  clip-path: polygon(
+    0% 0%,
+    10% 100%,
+    20% 0%,
+    30% 100%,
+    40% 0%,
+    50% 100%,
+    60% 0%,
+    70% 100%,
+    80% 0%,
+    90% 100%,
+    100% 0%
+  );
+  animation: bioluminescent-tendril 3s ease-in-out infinite;
+}
+
+/* Plankton field */
+.bioluminescent-plankton {
+  background-image:
+    radial-gradient(circle at 20% 30%, hsl(170, 100%, 60%, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, hsl(170, 100%, 70%, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 40% 70%, hsl(180, 100%, 60%, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 90% 80%, hsl(170, 100%, 60%, 0.2) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+/* Bio-shimmer on hover */
+.bioluminescent-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.bioluminescent-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(170, 100%, 60%, 0.2),
+    transparent
+  );
+}
+
+.bioluminescent-shimmer:hover::after {
+  animation: bioluminescent-shimmer 1.5s ease forwards;
+}
+
+/* Active state - flash glow */
+.bioluminescent-press:active {
+  animation: bioluminescent-intensify 0.3s ease;
+  transform: scale(0.98);
+}
+
+/* Intensify on hover */
+.bioluminescent-intensify-hover:hover {
+  animation: bioluminescent-intensify 1s ease-in-out infinite;
+}

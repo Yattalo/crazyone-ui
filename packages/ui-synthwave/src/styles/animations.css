@@ -1,0 +1,242 @@
+/* Synthwave Theme Animations */
+/* 80s retro-futurism - intense neon glow, grid perspective, chrome text */
+
+/* Perspective grid recede */
+@keyframes synthwave-grid-scroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 50px;
+  }
+}
+
+/* Chrome text shine */
+@keyframes synthwave-chrome {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Horizontal scan line */
+@keyframes synthwave-hline {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Intense neon flicker */
+@keyframes synthwave-neon-intense {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+    box-shadow:
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 40px currentColor;
+  }
+  92% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+  94% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.9;
+  }
+  97% {
+    opacity: 1;
+    filter: brightness(1.1);
+  }
+}
+
+/* Neon pulse glow */
+@keyframes synthwave-neon-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 10px hsl(280, 100%, 60%),
+      0 0 20px hsl(280, 100%, 60%),
+      0 0 40px hsl(190, 100%, 50%);
+  }
+  50% {
+    box-shadow:
+      0 0 20px hsl(280, 100%, 60%),
+      0 0 40px hsl(280, 100%, 60%),
+      0 0 80px hsl(190, 100%, 50%);
+  }
+}
+
+/* Sun rise effect */
+@keyframes synthwave-sun-rise {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Utility classes */
+.synthwave-grid-floor {
+  background-image:
+    linear-gradient(transparent 95%, hsl(280, 100%, 60%, 0.5) 95%),
+    linear-gradient(90deg, transparent 95%, hsl(280, 100%, 60%, 0.5) 95%);
+  background-size: 50px 50px;
+  animation: synthwave-grid-scroll 2s linear infinite;
+  perspective: 500px;
+  transform: rotateX(60deg);
+  transform-origin: bottom;
+}
+
+.synthwave-chrome-text {
+  background: linear-gradient(
+    90deg,
+    hsl(0, 0%, 70%) 0%,
+    hsl(0, 0%, 100%) 25%,
+    hsl(0, 0%, 70%) 50%,
+    hsl(0, 0%, 100%) 75%,
+    hsl(0, 0%, 70%) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: synthwave-chrome 3s linear infinite;
+}
+
+.synthwave-sun {
+  background: linear-gradient(
+    180deg,
+    hsl(50, 100%, 60%) 0%,
+    hsl(340, 100%, 50%) 50%,
+    hsl(280, 100%, 50%) 100%
+  );
+  border-radius: 50% 50% 0 0;
+  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+}
+
+.synthwave-scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.synthwave-scanline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(280, 100%, 70%, 0.7),
+    transparent
+  );
+  animation: synthwave-hline 6s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.synthwave-neon {
+  animation: synthwave-neon-pulse 2s ease-in-out infinite;
+}
+
+.synthwave-neon-hover:hover {
+  animation: synthwave-neon-intense 1.5s ease-in-out infinite;
+}
+
+/* Retro gradient */
+.synthwave-gradient {
+  background: linear-gradient(
+    180deg,
+    hsl(280, 80%, 20%) 0%,
+    hsl(320, 80%, 30%) 50%,
+    hsl(280, 60%, 10%) 100%
+  );
+}
+
+/* Horizontal lines pattern */
+.synthwave-lines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(190, 100, 255, 0.03) 2px,
+    rgba(190, 100, 255, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* Outrun text glow */
+.synthwave-text-glow {
+  text-shadow:
+    0 0 10px hsl(280, 100%, 60%),
+    0 0 20px hsl(280, 100%, 60%),
+    0 0 40px hsl(190, 100%, 50%);
+}
+
+/* Palm tree silhouette container */
+.synthwave-palm {
+  position: relative;
+}
+
+.synthwave-palm::before {
+  content: '🌴';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  font-size: 2em;
+  filter: brightness(0);
+  opacity: 0.3;
+}
+
+/* Mountain range */
+.synthwave-mountains {
+  clip-path: polygon(
+    0% 100%,
+    10% 60%,
+    25% 80%,
+    40% 40%,
+    55% 70%,
+    70% 30%,
+    85% 60%,
+    100% 50%,
+    100% 100%
+  );
+  background: linear-gradient(
+    180deg,
+    hsl(280, 80%, 40%) 0%,
+    hsl(280, 60%, 20%) 100%
+  );
+}
+
+/* Active state - neon flash */
+.synthwave-press:active {
+  animation: synthwave-neon-intense 0.3s ease;
+  filter: brightness(1.2);
+}

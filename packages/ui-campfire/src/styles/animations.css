@@ -1,0 +1,222 @@
+/* Campfire Theme Animations */
+/* Stories under stars - flickering flames, ember glow, smoke wisps */
+
+/* Irregular flame brightness flicker */
+@keyframes campfire-flicker {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  10% {
+    opacity: 0.95;
+    filter: brightness(1.05);
+  }
+  20% {
+    opacity: 1;
+    filter: brightness(0.98);
+  }
+  30% {
+    opacity: 0.92;
+    filter: brightness(1.08);
+  }
+  40% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.97;
+    filter: brightness(1.03);
+  }
+  60% {
+    opacity: 1;
+    filter: brightness(0.95);
+  }
+  70% {
+    opacity: 0.94;
+    filter: brightness(1.1);
+  }
+  80% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  90% {
+    opacity: 0.96;
+    filter: brightness(1.02);
+  }
+}
+
+/* Orange glow pulse */
+@keyframes campfire-ember {
+  0%, 100% {
+    box-shadow: 0 0 15px hsl(20, 90%, 52%, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px hsl(25, 95%, 55%, 0.6);
+  }
+}
+
+/* Rising smoke wisps */
+@keyframes campfire-smoke {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(-40px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Expanding warmth rings */
+@keyframes campfire-warmth {
+  0% {
+    box-shadow: 0 0 0 0 hsl(25, 90%, 50%, 0.3);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 20px hsl(25, 90%, 50%, 0);
+    opacity: 0;
+  }
+}
+
+/* Spark float animation */
+@keyframes campfire-spark {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-60px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+/* Flame dance */
+@keyframes campfire-flame-dance {
+  0%, 100% {
+    transform: scaleY(1) skewX(0deg);
+  }
+  25% {
+    transform: scaleY(1.05) skewX(2deg);
+  }
+  50% {
+    transform: scaleY(0.98) skewX(-1deg);
+  }
+  75% {
+    transform: scaleY(1.03) skewX(1deg);
+  }
+}
+
+/* Utility classes */
+.campfire-flicker {
+  animation: campfire-flicker 3s ease-in-out infinite;
+}
+
+.campfire-ember-glow {
+  animation: campfire-ember 2s ease-in-out infinite;
+}
+
+.campfire-smoke {
+  position: relative;
+}
+
+.campfire-smoke::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(139, 90, 43, 0.15) 0%,
+    transparent 70%
+  );
+  transform: translateX(-50%);
+  animation: campfire-smoke 4s ease-out infinite;
+  pointer-events: none;
+}
+
+.campfire-spark-container {
+  position: relative;
+  overflow: visible;
+}
+
+.campfire-spark-container::before,
+.campfire-spark-container::after {
+  content: '✦';
+  position: absolute;
+  font-size: 0.5em;
+  color: hsl(35, 100%, 60%);
+  animation: campfire-spark 2s ease-out infinite;
+  pointer-events: none;
+}
+
+.campfire-spark-container::before {
+  top: -5px;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.campfire-spark-container::after {
+  top: -8px;
+  right: 25%;
+  animation-delay: 1s;
+}
+
+.campfire-warmth {
+  position: relative;
+}
+
+.campfire-warmth::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: campfire-warmth 2s ease-out infinite;
+  pointer-events: none;
+}
+
+.campfire-flame {
+  animation: campfire-flame-dance 2s ease-in-out infinite;
+}
+
+/* Gradient glow background */
+.campfire-glow-bg {
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    hsl(25, 90%, 50%, 0.15) 0%,
+    transparent 50%
+  );
+}
+
+/* Warm shadow effect */
+.campfire-shadow {
+  box-shadow:
+    0 4px 15px hsl(20, 90%, 45%, 0.3),
+    0 2px 6px hsl(25, 95%, 52%, 0.2);
+}
+
+.campfire-shadow:hover {
+  box-shadow:
+    0 8px 25px hsl(20, 90%, 45%, 0.4),
+    0 4px 12px hsl(25, 95%, 52%, 0.3);
+}
+
+/* Log texture */
+.campfire-log-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='wood'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.15' numOctaves='2'/%3E%3CfeColorMatrix values='0.8 0 0 0 0.2 0.6 0 0 0 0.15 0.4 0 0 0 0.1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23wood)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  background-blend-mode: overlay;
+}
+
+/* Active state - stoke the fire */
+.campfire-press:active {
+  animation: campfire-flicker 0.5s ease-in-out;
+  transform: scale(0.98);
+}

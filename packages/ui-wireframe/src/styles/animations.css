@@ -1,0 +1,241 @@
+/* Wireframe Theme Animations */
+/* Blueprint aesthetic - stroke reveal, hand-drawn imperfection, annotations */
+
+/* Stroke/line reveal drawing */
+@keyframes wireframe-draw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Hand-drawn imperfection wobble */
+@keyframes wireframe-wobble {
+  0%, 100% {
+    transform: rotate(0deg) skew(0deg);
+  }
+  25% {
+    transform: rotate(0.3deg) skew(0.1deg);
+  }
+  50% {
+    transform: rotate(-0.2deg) skew(-0.1deg);
+  }
+  75% {
+    transform: rotate(0.2deg) skew(0.05deg);
+  }
+}
+
+/* Annotation appear */
+@keyframes wireframe-annotate {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dimension line extend */
+@keyframes wireframe-measure {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* Cursor blink */
+@keyframes wireframe-cursor {
+  0%, 50% {
+    border-right-color: currentColor;
+  }
+  51%, 100% {
+    border-right-color: transparent;
+  }
+}
+
+/* Grid fade in */
+@keyframes wireframe-grid-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+/* Utility classes */
+.wireframe-blueprint-bg {
+  background-color: hsl(210, 100%, 96%);
+  background-image:
+    linear-gradient(hsl(210, 80%, 85%) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(210, 80%, 85%) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.wireframe-hand-drawn {
+  animation: wireframe-wobble 4s ease-in-out infinite;
+  border-style: dashed;
+}
+
+.wireframe-annotation {
+  position: relative;
+}
+
+.wireframe-annotation::after {
+  content: attr(data-note);
+  position: absolute;
+  top: -1.5em;
+  left: 0;
+  font-size: 0.65em;
+  font-style: italic;
+  color: hsl(0, 0%, 50%);
+  animation: wireframe-annotate 0.3s ease-out;
+  white-space: nowrap;
+}
+
+.wireframe-dimension {
+  position: relative;
+}
+
+.wireframe-dimension::before,
+.wireframe-dimension::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+}
+
+.wireframe-dimension::before {
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  animation: wireframe-measure 0.5s ease-out forwards;
+}
+
+.wireframe-dimension::after {
+  content: attr(data-size);
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.6em;
+  font-family: monospace;
+  background: none;
+  height: auto;
+}
+
+.wireframe-placeholder {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    hsl(0, 0%, 90%) 5px,
+    hsl(0, 0%, 90%) 10px
+  );
+  border: 2px dashed hsl(0, 0%, 70%);
+}
+
+/* Sketch-style border */
+.wireframe-sketch {
+  border: 2px solid currentColor;
+  border-radius: 2px;
+  box-shadow:
+    2px 2px 0 -1px hsl(0, 0%, 100%),
+    3px 3px 0 -1px currentColor;
+}
+
+/* Cross-hatch fill */
+.wireframe-crosshatch {
+  background-image:
+    linear-gradient(45deg, currentColor 25%, transparent 25%),
+    linear-gradient(-45deg, currentColor 25%, transparent 25%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+  opacity: 0.1;
+}
+
+/* Arrow pointer */
+.wireframe-arrow {
+  position: relative;
+}
+
+.wireframe-arrow::before {
+  content: '→';
+  position: absolute;
+  right: -1.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+}
+
+/* Cursor typing effect */
+.wireframe-typing::after {
+  content: '|';
+  animation: wireframe-cursor 1s step-end infinite;
+  margin-left: 2px;
+}
+
+/* Section label */
+.wireframe-label::before {
+  content: attr(data-label);
+  display: block;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: hsl(0, 0%, 50%);
+  margin-bottom: 0.5em;
+}
+
+/* Component box */
+.wireframe-component {
+  border: 2px dashed hsl(0, 0%, 70%);
+  padding: 1rem;
+  position: relative;
+}
+
+.wireframe-component::before {
+  content: 'COMPONENT';
+  position: absolute;
+  top: -0.7em;
+  left: 1em;
+  background: hsl(0, 0%, 100%);
+  padding: 0 0.5em;
+  font-size: 0.6em;
+  color: hsl(0, 0%, 50%);
+}
+
+/* Grid overlay animation */
+.wireframe-grid-reveal {
+  position: relative;
+}
+
+.wireframe-grid-reveal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  animation: wireframe-grid-fade 0.5s ease-out forwards;
+  pointer-events: none;
+}
+
+/* Active state - sketch press */
+.wireframe-press:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 -1px currentColor;
+}
+
+/* Hover highlight */
+.wireframe-highlight:hover {
+  background-color: hsl(50, 100%, 90%);
+  transition: background-color 0.2s ease;
+}

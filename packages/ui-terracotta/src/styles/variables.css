@@ -1,0 +1,30 @@
+/* Terracotta Theme - Sunbaked earth, timeless warmth */
+/* Mediterranean warmth, organic curves, sage accents */
+
+@layer base {
+  :root, [data-theme="terracotta"] {
+    --background: 35 35% 95%;
+    --foreground: 20 40% 20%;
+    --card: 35 30% 98%;
+    --card-foreground: 20 40% 20%;
+    --primary: 15 60% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 100 30% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 35 25% 90%;
+    --muted-foreground: 20 20% 45%;
+    --accent: 100 30% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 20 25% 80%;
+    --input: 35 20% 92%;
+    --ring: 15 60% 55%;
+    --radius: 0.5rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Lora', 'Georgia', serif;
+  }
+}
+
+/* Theme Signature: tile-patterns warm-shadows */

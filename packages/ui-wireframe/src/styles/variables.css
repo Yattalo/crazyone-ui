@@ -1,0 +1,30 @@
+/* Wireframe Theme - Sketched, never finished */
+/* Hand-drawn borders, paper texture, red markup */
+
+@layer base {
+  :root, [data-theme="wireframe"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+    --primary: 0 0% 20%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 20%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 72% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 20%;
+    --radius: 0.25rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Architects Daughter', 'Comic Neue', cursive;
+  }
+}
+
+/* Theme Signature: sketchy-borders hand-drawn */

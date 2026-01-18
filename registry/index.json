@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "@crazyone",
+  "homepage": "https://design.acme.dev",
+  "items": [
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "registryDependencies": []
+    }
+  ],
+  "themes": [
+    {
+      "name": "vega",
+      "label": "Vega",
+      "description": "Modern, high-contrast theme with sharp edges"
+    },
+    {
+      "name": "nova",
+      "label": "Nova",
+      "description": "Soft, warm theme with rounded corners"
+    },
+    {
+      "name": "maia",
+      "label": "Maia",
+      "description": "Minimal, monochrome theme with clean lines"
+    },
+    {
+      "name": "lyra",
+      "label": "Lyra",
+      "description": "Vibrant, colorful theme with purple accents"
+    },
+    {
+      "name": "mira",
+      "label": "Mira",
+      "description": "Classic, corporate theme with navy tones"
+    }
+  ]
+}

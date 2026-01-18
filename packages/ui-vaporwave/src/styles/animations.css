@@ -1,0 +1,146 @@
+/* Vaporwave Theme Animations */
+/* Dead malls, eternal sunset - VHS aesthetic, chromatic aberration */
+
+/* VHS scanline effect */
+@keyframes vaporwave-scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Chromatic aberration text */
+@keyframes vaporwave-chromatic {
+  0%, 100% {
+    text-shadow: -2px 0 #FF6AD5, 2px 0 #01CDFE;
+  }
+  25% {
+    text-shadow: -1px 0 #FF6AD5, 1px 0 #01CDFE;
+  }
+  50% {
+    text-shadow: 2px 0 #FF6AD5, -2px 0 #01CDFE;
+  }
+  75% {
+    text-shadow: 1px 0 #FF6AD5, -1px 0 #01CDFE;
+  }
+}
+
+/* VHS tracking distortion */
+@keyframes vaporwave-tracking {
+  0%, 100% { transform: translateX(0) skewX(0); }
+  10% { transform: translateX(-2px) skewX(-0.5deg); }
+  20% { transform: translateX(2px) skewX(0.5deg); }
+  30% { transform: translateX(-1px) skewX(-0.2deg); }
+  40% { transform: translateX(0) skewX(0); }
+}
+
+/* Neon pulse glow */
+@keyframes vaporwave-neon-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 5px #FF6AD5,
+      0 0 10px #FF6AD5,
+      0 0 20px #FF6AD5,
+      0 0 40px #01CDFE;
+  }
+  50% {
+    box-shadow:
+      0 0 10px #FF6AD5,
+      0 0 20px #FF6AD5,
+      0 0 40px #FF6AD5,
+      0 0 80px #01CDFE;
+  }
+}
+
+/* Slow float for aesthetic elements */
+@keyframes vaporwave-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+/* Gradient shift for backgrounds */
+@keyframes vaporwave-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* VHS pause line */
+@keyframes vaporwave-pause-line {
+  0%, 45%, 55%, 100% { opacity: 0; }
+  46%, 54% { opacity: 1; }
+}
+
+/* Utility classes */
+.vaporwave-scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.vaporwave-scanline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 106, 213, 0.5),
+    transparent
+  );
+  animation: vaporwave-scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.vaporwave-chromatic {
+  animation: vaporwave-chromatic 3s ease-in-out infinite;
+}
+
+.vaporwave-tracking {
+  animation: vaporwave-tracking 4s ease-in-out infinite;
+}
+
+.vaporwave-neon {
+  animation: vaporwave-neon-pulse 2s ease-in-out infinite;
+}
+
+.vaporwave-float {
+  animation: vaporwave-float 6s ease-in-out infinite;
+}
+
+.vaporwave-gradient {
+  background-size: 200% 200%;
+  animation: vaporwave-gradient-shift 10s ease infinite;
+}
+
+/* Hover chromatic effect for interactive elements */
+.vaporwave-hover-chromatic:hover {
+  text-shadow: -2px 0 #FF6AD5, 2px 0 #01CDFE;
+  transition: text-shadow 0.3s ease;
+}
+
+/* VHS timestamp overlay */
+.vaporwave-timestamp::after {
+  content: 'PLAY ▶ 00:00:00';
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-family: 'VT323', monospace;
+  font-size: 0.75em;
+  color: #01CDFE;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+  opacity: 0.7;
+}
+
+/* Static noise overlay */
+.vaporwave-static::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}

@@ -1,0 +1,234 @@
+/* Blackletter Theme Animations */
+/* Gothic formality - illuminated letters, parchment textures, ink effects */
+
+/* Illuminated letter glow */
+@keyframes blackletter-illuminate {
+  0%, 100% {
+    text-shadow:
+      0 0 5px hsl(45, 80%, 50%, 0.3),
+      0 0 10px hsl(45, 80%, 50%, 0.2);
+  }
+  50% {
+    text-shadow:
+      0 0 10px hsl(45, 80%, 50%, 0.5),
+      0 0 20px hsl(45, 80%, 50%, 0.3),
+      0 0 30px hsl(45, 80%, 50%, 0.2);
+  }
+}
+
+/* Ink spread blur */
+@keyframes blackletter-ink {
+  0% {
+    filter: blur(0);
+    opacity: 1;
+  }
+  50% {
+    filter: blur(0.5px);
+    opacity: 0.95;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+/* Parchment sepia age */
+@keyframes blackletter-age {
+  0%, 100% {
+    filter: sepia(0);
+  }
+  50% {
+    filter: sepia(0.1);
+  }
+}
+
+/* Dramatic shadow extend */
+@keyframes blackletter-shadow {
+  0%, 100% {
+    box-shadow: 4px 4px 0 hsl(350, 72%, 47%);
+  }
+  50% {
+    box-shadow: 6px 6px 0 hsl(350, 72%, 47%);
+  }
+}
+
+/* Quill stroke reveal */
+@keyframes blackletter-stroke {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Candlelight flicker */
+@keyframes blackletter-candle {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 0.95;
+    filter: brightness(1.05);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(0.98);
+  }
+  75% {
+    opacity: 0.97;
+    filter: brightness(1.02);
+  }
+}
+
+/* Utility classes */
+.blackletter-parchment {
+  background-color: hsl(40, 30%, 90%);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23f5efe0' surfaceScale='2'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+}
+
+.blackletter-illuminate {
+  animation: blackletter-illuminate 3s ease-in-out infinite;
+}
+
+.blackletter-drop-cap {
+  float: left;
+  font-size: 3em;
+  line-height: 1;
+  padding-right: 0.1em;
+  color: hsl(350, 72%, 47%);
+  font-weight: bold;
+  animation: blackletter-illuminate 4s ease-in-out infinite;
+}
+
+.blackletter-gothic-arch {
+  border-radius: 0;
+  clip-path: polygon(
+    0 20%,
+    10% 5%,
+    50% 0,
+    90% 5%,
+    100% 20%,
+    100% 100%,
+    0 100%
+  );
+}
+
+.blackletter-seal {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    hsl(350, 72%, 47%) 0%,
+    hsl(350, 60%, 35%) 100%
+  );
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: hsl(45, 80%, 90%);
+}
+
+/* Ink effect on text */
+.blackletter-ink-text {
+  animation: blackletter-ink 4s ease-in-out infinite;
+}
+
+/* Aged paper effect */
+.blackletter-aged {
+  animation: blackletter-age 8s ease-in-out infinite;
+}
+
+/* Gothic border */
+.blackletter-border {
+  border: 4px solid hsl(350, 72%, 47%);
+  box-shadow: 4px 4px 0 hsl(350, 72%, 47%);
+}
+
+.blackletter-border:hover {
+  animation: blackletter-shadow 1s ease-in-out infinite;
+}
+
+/* Manuscript margin */
+.blackletter-margin {
+  border-left: 2px solid hsl(350, 72%, 47%, 0.3);
+  padding-left: 1rem;
+  margin-left: 2rem;
+}
+
+/* Ornamental corner */
+.blackletter-ornament {
+  position: relative;
+}
+
+.blackletter-ornament::before,
+.blackletter-ornament::after {
+  content: '❧';
+  position: absolute;
+  font-size: 1.2em;
+  color: hsl(350, 72%, 47%);
+}
+
+.blackletter-ornament::before {
+  top: -0.5em;
+  left: -0.5em;
+}
+
+.blackletter-ornament::after {
+  bottom: -0.5em;
+  right: -0.5em;
+  transform: rotate(180deg);
+}
+
+/* Candlelit glow */
+.blackletter-candlelit {
+  animation: blackletter-candle 3s ease-in-out infinite;
+  box-shadow: 0 0 30px hsl(45, 80%, 50%, 0.2);
+}
+
+/* Vellum texture */
+.blackletter-vellum {
+  background: linear-gradient(
+    135deg,
+    hsl(40, 25%, 88%) 0%,
+    hsl(40, 30%, 85%) 50%,
+    hsl(40, 25%, 88%) 100%
+  );
+}
+
+/* Rubrication (red text for emphasis) */
+.blackletter-rubric {
+  color: hsl(350, 72%, 47%);
+  font-weight: bold;
+}
+
+/* Stroke reveal animation */
+.blackletter-reveal {
+  animation: blackletter-stroke 0.5s ease-out forwards;
+}
+
+/* Active state - press into vellum */
+.blackletter-press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 hsl(350, 72%, 47%);
+}
+
+/* Gold leaf shimmer */
+.blackletter-gold {
+  background: linear-gradient(
+    135deg,
+    hsl(45, 80%, 50%) 0%,
+    hsl(45, 90%, 60%) 50%,
+    hsl(45, 80%, 50%) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: blackletter-illuminate 3s ease-in-out infinite;
+}

@@ -1,0 +1,30 @@
+/* Blackletter Theme - Gothic power, modern edge */
+/* Ink black with cardinal red, gothic arch frames */
+
+@layer base {
+  :root, [data-theme="blackletter"] {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 95%;
+    --primary: 350 72% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 350 72% 47%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 350 40% 25%;
+    --input: 0 0% 10%;
+    --ring: 350 72% 47%;
+    --radius: 0rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'UnifrakturMaguntia', 'Fraktur', serif;
+  }
+}
+
+/* Theme Signature: gothic-arches dramatic-shadows */

@@ -1,0 +1,30 @@
+/* Arctic Theme - Crystal clarity, frozen precision */
+/* Ice white with glacier blue and aurora purple */
+
+@layer base {
+  :root, [data-theme="arctic"] {
+    --background: 210 30% 98%;
+    --foreground: 220 40% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 40% 20%;
+    --primary: 195 95% 60%;
+    --primary-foreground: 220 40% 10%;
+    --secondary: 280 90% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 220 20% 50%;
+    --accent: 280 90% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 25% 88%;
+    --input: 210 20% 96%;
+    --ring: 195 95% 60%;
+    --radius: 0.25rem;
+
+    /* Theme-specific custom properties */
+    --font-family: 'Exo 2', 'Rajdhani', sans-serif;
+  }
+}
+
+/* Theme Signature: hexagonal-patterns ice-crystals */
