@@ -11,7 +11,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./src/styles/variables.css"
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --external react --external lucide-react",

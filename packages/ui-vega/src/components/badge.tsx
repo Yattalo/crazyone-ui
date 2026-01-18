@@ -3,14 +3,14 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@crazyone/ui-core";
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 shadow-sm hover:shadow-md",
+  "inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-semibold transition-all duration-200",
   {
     variants: {
       variant: {
-        default: "bg-blue-500 text-white",
-        secondary: "bg-gray-200 text-gray-900",
+        default: "bg-primary text-primary-foreground",
+        secondary: "bg-secondary text-secondary-foreground",
         destructive: "bg-destructive text-destructive-foreground",
-        outline: "border border-blue-500 bg-transparent text-blue-500",
+        outline: "border border-primary bg-transparent text-primary",
         warning: "bg-yellow-500 text-white",
         success: "bg-green-600 text-white",
       },

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { cn } from "@crazyone/ui-core";
 
-// Vega Card: Modern, sharp edges, strong shadows
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>

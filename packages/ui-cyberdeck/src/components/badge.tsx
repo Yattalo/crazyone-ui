@@ -3,16 +3,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@crazyone/ui-core";
 
 const badgeVariants = cva(
-  "inline-flex items-center border px-2.5 py-0.5 text-xs font-mono uppercase tracking-[0.15em] transition-all",
+  "inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-semibold transition-all duration-200",
   {
     variants: {
       variant: {
-        default: "border-primary bg-primary/10 text-primary shadow-[0_0_10px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_15px_hsl(var(--primary)/0.5)]",
-        secondary: "border-secondary bg-secondary/10 text-secondary-foreground",
-        destructive: "border-destructive bg-destructive/10 text-destructive shadow-[0_0_10px_rgba(239,68,68,0.3)] animate-pulse",
-        outline: "border-primary/50 bg-transparent text-primary",
-        warning: "border-yellow-500 bg-yellow-500/10 text-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]",
-        success: "border-primary bg-primary/20 text-primary shadow-[0_0_10px_hsl(var(--primary)/0.4)]",
+        default: "bg-primary text-primary-foreground",
+        secondary: "bg-secondary text-secondary-foreground",
+        destructive: "bg-destructive text-destructive-foreground",
+        outline: "border border-primary bg-transparent text-primary",
+        warning: "bg-yellow-500 text-white",
+        success: "bg-green-600 text-white",
       },
     },
     defaultVariants: {

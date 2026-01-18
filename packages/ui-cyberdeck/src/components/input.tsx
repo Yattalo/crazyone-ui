@@ -3,13 +3,13 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@crazyone/ui-core";
 
 const inputVariants = cva(
-  "flex w-full px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 font-mono bg-background border border-primary/50 text-primary caret-primary focus:border-primary focus:shadow-[0_0_10px_hsl(var(--primary)/0.3),inset_0_0_5px_hsl(var(--primary)/0.1)]",
+  "font-mono bg-input border border-primary/50 text-foreground placeholder:text-muted-foreground focus:border-primary focus:shadow-[0_0_10px_hsl(var(--primary)/0.3)]",
   {
     variants: {
       variant: {
         default: "",
-        error: "border-destructive focus:ring-destructive/50",
-        success: "border-green-500 focus:ring-green-500/50",
+        error: "border-destructive focus-visible:ring-destructive/50",
+        success: "border-green-500 focus-visible:ring-green-500/50",
       },
       inputSize: {
         default: "h-10",

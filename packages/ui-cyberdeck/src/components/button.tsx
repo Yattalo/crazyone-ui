@@ -4,11 +4,11 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@crazyone/ui-core";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 font-mono uppercase tracking-[0.2em] border border-primary bg-transparent text-primary relative overflow-hidden hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_20px_hsl(var(--primary)/0.5),inset_0_0_20px_hsl(var(--primary)/0.1)] hover:animate-[cyberdeck-glow-pulse_2s_ease-in-out_infinite] after:absolute after:right-1 after:content-['|'] after:animate-[cyberdeck-cursor-blink_1s_step-end_infinite]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 font-mono uppercase tracking-[0.2em] border border-primary bg-transparent text-primary relative overflow-hidden",
   {
     variants: {
       variant: {
-        default: "",
+        default: "hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_20px_hsl(var(--primary)/0.5),inset_0_0_20px_hsl(var(--primary)/0.1)]",
         destructive: "!bg-destructive !text-destructive-foreground",
         outline: "!bg-transparent !border-2",
         secondary: "!bg-secondary !text-secondary-foreground",

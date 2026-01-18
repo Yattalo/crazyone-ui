@@ -8,7 +8,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "text-card-foreground shadow-sm transition-all duration-200 border border-primary/30 bg-background/95 shadow-[0_0_15px_hsl(var(--primary)/0.1)] relative overflow-hidden hover:shadow-[0_0_25px_hsl(var(--primary)/0.2)] hover:border-primary/50 before:absolute before:top-0 before:left-0 before:right-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-primary/50 before:to-transparent before:translate-y-[-100%] hover:before:animate-[cyberdeck-scanline_3s_linear_infinite]",
+      "border border-primary/30 bg-card text-card-foreground shadow-[0_0_10px_hsl(var(--primary)/0.2)] transition-all hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] relative overflow-hidden",
       className
     )}
     {...props}
@@ -34,7 +34,10 @@ const CardTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("text-2xl font-semibold leading-none tracking-tight", className)}
+    className={cn(
+      "text-2xl font-bold leading-none tracking-tight",
+      className
+    )}
     {...props}
   />
 ));
@@ -72,4 +75,4 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = "CardFooter";
 
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter };
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
