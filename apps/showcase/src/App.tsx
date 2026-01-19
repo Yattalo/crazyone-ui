@@ -6,8 +6,23 @@ import { cn } from "./lib/utils";
 
 // Import real theme demos
 import { BrutalistDemo } from "./demos/BrutalistDemo";
+import { CasaGiardinoDemo } from "./demos/CasaGiardinoDemo";
 import { CyberdeckDemo } from "./demos/CyberdeckDemo";
 import { VaporwaveDemo } from "./demos/VaporwaveDemo";
+
+// Casa & Giardino Variants
+import { CasaGiardinoTerracottaDemo } from "./demos/CasaGiardinoTerracottaDemo";
+import { CasaGiardinoGreenhouseDemo } from "./demos/CasaGiardinoGreenhouseDemo";
+import { CasaGiardinoCampfireDemo } from "./demos/CasaGiardinoCampfireDemo";
+import { CasaGiardinoArcticDemo } from "./demos/CasaGiardinoArcticDemo";
+import { CasaGiardinoObsidianDemo } from "./demos/CasaGiardinoObsidianDemo";
+import { CasaGiardinoBauhausDemo } from "./demos/CasaGiardinoBauhausDemo";
+import { CasaGiardinoSynthwaveDemo } from "./demos/CasaGiardinoSynthwaveDemo";
+import { CasaGiardinoGelatoDemo } from "./demos/CasaGiardinoGelatoDemo";
+import { CasaGiardinoDarkroomDemo } from "./demos/CasaGiardinoDarkroomDemo";
+import { CasaGiardinoNightclubDemo } from "./demos/CasaGiardinoNightclubDemo";
+import { CasaGiardinoNeoMemphisDemo } from "./demos/CasaGiardinoNeoMemphisDemo";
+import { CasaGiardinoRetrofutureDemo } from "./demos/CasaGiardinoRetrofutureDemo";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -56,10 +71,10 @@ function HomePage() {
         </p>
         <div className="mt-4 flex gap-2">
           <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">
-            3 Themes Ready
+            16 Themes Ready
           </span>
           <span className="inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-sm font-medium text-yellow-800">
-            22 Coming Soon
+            9+ Coming Soon
           </span>
         </div>
       </section>
@@ -95,8 +110,22 @@ function HomePage() {
 // Map theme names to their demo components
 const THEME_DEMOS: Record<string, React.ComponentType> = {
   brutalist: BrutalistDemo,
+  "casa-giardino": CasaGiardinoDemo,
   cyberdeck: CyberdeckDemo,
   vaporwave: VaporwaveDemo,
+  // Casa & Giardino Variants
+  "casa-giardino-terracotta": CasaGiardinoTerracottaDemo,
+  "casa-giardino-greenhouse": CasaGiardinoGreenhouseDemo,
+  "casa-giardino-campfire": CasaGiardinoCampfireDemo,
+  "casa-giardino-arctic": CasaGiardinoArcticDemo,
+  "casa-giardino-obsidian": CasaGiardinoObsidianDemo,
+  "casa-giardino-bauhaus": CasaGiardinoBauhausDemo,
+  "casa-giardino-synthwave": CasaGiardinoSynthwaveDemo,
+  "casa-giardino-gelato": CasaGiardinoGelatoDemo,
+  "casa-giardino-darkroom": CasaGiardinoDarkroomDemo,
+  "casa-giardino-nightclub": CasaGiardinoNightclubDemo,
+  "casa-giardino-neomemphis": CasaGiardinoNeoMemphisDemo,
+  "casa-giardino-retrofuture": CasaGiardinoRetrofutureDemo,
 };
 
 function DemoPage({ params }: { params: { name: string } }) {
