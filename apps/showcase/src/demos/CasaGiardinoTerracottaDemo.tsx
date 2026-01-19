@@ -99,6 +99,70 @@ const terracottaStyles = `
     100% { transform: rotate(360deg); }
   }
 
+  /* NEW: Swaying leaf animation */
+  @keyframes leafSway {
+    0%, 100% {
+      transform: rotate(-3deg) translateX(0);
+    }
+    25% {
+      transform: rotate(2deg) translateX(3px);
+    }
+    50% {
+      transform: rotate(-1deg) translateX(-2px);
+    }
+    75% {
+      transform: rotate(3deg) translateX(2px);
+    }
+  }
+
+  @keyframes leafFloat {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* NEW: Heat shimmer effect */
+  @keyframes heatShimmer {
+    0%, 100% {
+      filter: blur(0px);
+      transform: scaleY(1);
+    }
+    50% {
+      filter: blur(0.3px);
+      transform: scaleY(1.002);
+    }
+  }
+
+  /* NEW: Warmth pulse on hover */
+  @keyframes warmthPulse {
+    0% {
+      box-shadow:
+        0 25px 50px -12px hsl(16 65% 48% / 0.25),
+        inset 0 0 0 0 hsl(16 65% 48% / 0);
+    }
+    50% {
+      box-shadow:
+        0 30px 60px -12px hsl(16 65% 48% / 0.35),
+        inset 0 0 30px 0 hsl(16 65% 48% / 0.05);
+    }
+    100% {
+      box-shadow:
+        0 25px 50px -12px hsl(16 65% 48% / 0.25),
+        inset 0 0 0 0 hsl(16 65% 48% / 0);
+    }
+  }
+
   .animate-sun-rise {
     animation: sunRise 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
@@ -111,6 +175,15 @@ const terracottaStyles = `
     animation: driftIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
+  .animate-leaf-sway {
+    animation: leafSway 4s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  .animate-heat-shimmer {
+    animation: heatShimmer 3s ease-in-out infinite;
+  }
+
   .delay-100 { animation-delay: 100ms; }
   .delay-200 { animation-delay: 200ms; }
   .delay-300 { animation-delay: 300ms; }
@@ -119,20 +192,99 @@ const terracottaStyles = `
 
   .hover-terracotta {
     transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+  }
+
+  .hover-terracotta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      hsl(16 65% 48% / 0) 0%,
+      hsl(16 65% 48% / 0) 100%
+    );
+    transition: background 0.5s ease;
+    pointer-events: none;
   }
 
   .hover-terracotta:hover {
     transform: translateY(-6px) rotate(-1deg);
-    box-shadow: 0 25px 50px -12px hsl(16 65% 48% / 0.25);
+    animation: warmthPulse 2s ease-in-out infinite;
+  }
+
+  .hover-terracotta:hover::before {
+    background: linear-gradient(
+      135deg,
+      hsl(16 65% 48% / 0.03) 0%,
+      hsl(25 60% 55% / 0.05) 100%
+    );
+  }
+
+  /* Enhanced terracotta texture */
+  .texture-clay {
+    position: relative;
   }
 
   .texture-clay::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    opacity: 0.04;
+    background-image:
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.5' numOctaves='2' seed='15'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+    opacity: 0.035;
     pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  /* Subtle terracotta grain overlay */
+  .texture-clay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 30%, hsl(16 65% 48% / 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, hsl(25 60% 55% / 0.02) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, hsl(45 30% 65% / 0.02) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Floating leaf element */
+  .floating-leaf {
+    position: fixed;
+    width: 20px;
+    height: 30px;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0;
+    animation: leafFloat 15s linear infinite;
+  }
+
+  .floating-leaf svg {
+    width: 100%;
+    height: 100%;
+    fill: hsl(150 25% 35% / 0.4);
+    animation: leafSway 3s ease-in-out infinite;
+  }
+
+  .floating-leaf:nth-child(1) { left: 10%; animation-delay: 0s; }
+  .floating-leaf:nth-child(2) { left: 30%; animation-delay: 3s; }
+  .floating-leaf:nth-child(3) { left: 50%; animation-delay: 6s; }
+  .floating-leaf:nth-child(4) { left: 70%; animation-delay: 9s; }
+  .floating-leaf:nth-child(5) { left: 90%; animation-delay: 12s; }
+
+  /* Decorative olive branch */
+  .olive-branch {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.15;
+  }
+
+  .olive-branch svg {
+    animation: leafSway 5s ease-in-out infinite;
+    transform-origin: left center;
   }
 
   .gallery-scroll-terra {
@@ -149,13 +301,46 @@ const terracottaStyles = `
     display: none;
   }
 
+  /* Card warmth effect on hover */
+  .card-warmth {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-warmth::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      hsl(16 65% 48% / 0.08) 0%,
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .card-warmth:hover::after {
+    opacity: 1;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-sun-rise,
     .animate-warm-glow,
     .animate-drift-in,
-    .hover-terracotta {
+    .animate-leaf-sway,
+    .animate-heat-shimmer,
+    .hover-terracotta,
+    .floating-leaf,
+    .olive-branch svg {
       animation: none !important;
       transition: none !important;
+    }
+
+    .hover-terracotta:hover {
+      animation: none !important;
+      box-shadow: 0 25px 50px -12px hsl(16 65% 48% / 0.25);
     }
   }
 `;
@@ -258,6 +443,17 @@ export function CasaGiardinoTerracottaDemo() {
   return (
     <>
       <style>{terracottaStyles}</style>
+
+      {/* Floating olive leaves */}
+      {[...Array(5)].map((_, i) => (
+        <div key={i} className="floating-leaf" aria-hidden="true">
+          <svg viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0C12 0 4 8 4 18C4 28 12 36 12 36C12 36 20 28 20 18C20 8 12 0 12 0Z" />
+            <path d="M12 6V30" stroke="hsl(150 25% 25%)" strokeWidth="0.5" fill="none" />
+          </svg>
+        </div>
+      ))}
+
       <div
         className="texture-clay relative overflow-x-hidden"
         style={{
@@ -306,6 +502,19 @@ export function CasaGiardinoTerracottaDemo() {
                 style={{ backgroundColor: "hsl(16 65% 48%)" }}
                 aria-hidden="true"
               />
+
+              {/* Decorative olive branch */}
+              <div className="olive-branch absolute -right-16 top-1/4 hidden lg:block" aria-hidden="true">
+                <svg width="120" height="200" viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M60 0C60 0 60 200 60 200" stroke="hsl(150 25% 35%)" strokeWidth="2" />
+                  <ellipse cx="40" cy="30" rx="15" ry="25" fill="hsl(150 25% 35%)" transform="rotate(-20 40 30)" />
+                  <ellipse cx="80" cy="50" rx="15" ry="25" fill="hsl(150 25% 35%)" transform="rotate(20 80 50)" />
+                  <ellipse cx="35" cy="80" rx="15" ry="25" fill="hsl(150 25% 35%)" transform="rotate(-25 35 80)" />
+                  <ellipse cx="85" cy="110" rx="15" ry="25" fill="hsl(150 25% 35%)" transform="rotate(15 85 110)" />
+                  <ellipse cx="40" cy="140" rx="15" ry="25" fill="hsl(150 25% 35%)" transform="rotate(-15 40 140)" />
+                  <ellipse cx="75" cy="170" rx="15" ry="25" fill="hsl(150 25% 35%)" transform="rotate(25 75 170)" />
+                </svg>
+              </div>
 
               <p
                 className="font-body-terra text-xs uppercase tracking-[0.5em] mb-8 opacity-0 animate-drift-in delay-300"
@@ -455,7 +664,7 @@ export function CasaGiardinoTerracottaDemo() {
             {SERVIZI.map((servizio, index) => (
               <Card
                 key={servizio.numeral}
-                className="hover-terracotta group relative overflow-hidden"
+                className="hover-terracotta card-warmth group relative overflow-hidden"
                 style={{
                   backgroundColor: "hsl(30 40% 96%)",
                   border: "none",

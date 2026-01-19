@@ -14,7 +14,7 @@ import { existsSync } from "node:fs";
 
 const PACKAGES_DIR = join(import.meta.dir, "..", "packages");
 const REGISTRY_DIR = join(import.meta.dir, "..", "registry");
-const THEMES = ["vega", "nova", "maia", "lyra", "mira"] as const;
+const THEMES = ["vega", "nova", "maia", "lyra", "mira", "heartwood"] as const;
 
 interface RegistryItem {
   $schema: string;
