@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:ui",
+  "title": "Input",
+  "description": "input component with maia theme styling",
+  "dependencies": [
+    "@crazyone/ui-core"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/input.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@crazyone/ui-core\";\n\nexport interface InputProps\n  extends React.InputHTMLAttributes<HTMLInputElement> {}\n\n// Maia Input: Minimal input with subtle gray focus\nconst Input = React.forwardRef<HTMLInputElement, InputProps>(\n  ({ className, type, ...props }, ref) => (\n    <input\n      type={type}\n      className={cn(\n        \"flex h-9 w-full rounded border border-foreground/20 bg-background px-3 py-1 text-sm placeholder:text-muted-foreground transition-colors duration-150 focus-visible:outline-none focus-visible:border-foreground/40 focus-visible:ring-1 focus-visible:ring-foreground/10 disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      ref={ref}\n      {...props}\n    />\n  )\n);\nInput.displayName = \"Input\";\n\nexport { Input };\n"
+    }
+  ]
+}

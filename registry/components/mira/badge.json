@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "title": "Badge",
+  "description": "badge component with mira theme styling",
+  "dependencies": [
+    "class-variance-authority",
+    "@crazyone/ui-core"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/badge.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@crazyone/ui-core\";\n\nconst badgeVariants = cva(\n  \"inline-flex items-center rounded-sm px-2.5 py-0.5 text-xs font-medium transition-all\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"border border-transparent bg-primary text-primary-foreground hover:bg-primary/80\",\n        secondary:\n          \"border border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n        destructive:\n          \"border border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80\",\n        outline: \"border border-border bg-transparent text-foreground hover:bg-accent\",\n        warning:\n          \"border border-transparent bg-amber-600 text-white hover:bg-amber-700\",\n        success:\n          \"border border-transparent bg-green-600 text-white hover:bg-green-700\",\n        info:\n          \"border border-transparent bg-blue-600 text-white hover:bg-blue-700\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\nexport interface BadgeProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof badgeVariants> {}\n\nfunction Badge({ className, variant, ...props }: BadgeProps) {\n  return (\n    <div className={cn(badgeVariants({ variant }), className)} {...props} />\n  );\n}\n\nexport { Badge, badgeVariants };\n"
+    }
+  ]
+}

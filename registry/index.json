@@ -4,12 +4,62 @@
   "homepage": "https://design.acme.dev",
   "items": [
     {
+      "name": "tabs",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
       "name": "card",
       "type": "registry:ui",
       "registryDependencies": []
     },
     {
+      "name": "slider",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
       "name": "button",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "registryDependencies": []
+    },
+    {
+      "name": "input",
       "type": "registry:ui",
       "registryDependencies": []
     }
@@ -39,6 +89,11 @@
       "name": "mira",
       "label": "Mira",
       "description": "Classic, corporate theme with navy tones"
+    },
+    {
+      "name": "heartwood",
+      "label": "Heartwood",
+      "description": ""
     }
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "type": "registry:ui",
+  "title": "Alert",
+  "description": "alert component with mira theme styling",
+  "dependencies": [
+    "class-variance-authority",
+    "@crazyone/ui-core"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/alert.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@crazyone/ui-core\";\n\nconst alertVariants = cva(\n  \"relative w-full border p-4 rounded-sm [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-background border-border text-foreground\",\n        destructive:\n          \"border-destructive bg-destructive/10 text-destructive [&>svg]:text-destructive\",\n        warning:\n          \"border-amber-600 bg-amber-600/10 text-amber-600 [&>svg]:text-amber-600\",\n        success:\n          \"border-green-600 bg-green-600/10 text-green-600 [&>svg]:text-green-600\",\n        info:\n          \"border-blue-600 bg-blue-600/10 text-blue-600 [&>svg]:text-blue-600\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\nconst Alert = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>\n>(({ className, variant, ...props }, ref) => (\n  <div\n    ref={ref}\n    role=\"alert\"\n    className={cn(alertVariants({ variant }), className)}\n    {...props}\n  />\n));\nAlert.displayName = \"Alert\";\n\nconst AlertTitle = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h5\n    ref={ref}\n    className={cn(\"mb-1 text-sm font-semibold leading-none tracking-tight\", className)}\n    {...props}\n  />\n));\nAlertTitle.displayName = \"AlertTitle\";\n\nconst AlertDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"text-sm leading-relaxed opacity-90\", className)}\n    {...props}\n  />\n));\nAlertDescription.displayName = \"AlertDescription\";\n\nexport { Alert, AlertTitle, AlertDescription, alertVariants };\n"
+    }
+  ]
+}

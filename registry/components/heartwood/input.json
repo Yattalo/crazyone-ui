@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:ui",
+  "title": "Input",
+  "description": "input component with heartwood theme styling",
+  "dependencies": [
+    "class-variance-authority",
+    "@crazyone/ui-core"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/input.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@crazyone/ui-core\";\n\nconst inputVariants = cva(\n  \"bg-input border border-border/60 text-foreground placeholder:text-muted-foreground rounded-lg transition-colors duration-200 focus:border-accent focus:ring-2 focus:ring-accent/20\",\n  {\n    variants: {\n      variant: {\n        default: \"\",\n        error: \"border-destructive focus-visible:ring-destructive/50\",\n        success: \"border-green-500 focus-visible:ring-green-500/50\",\n      },\n      inputSize: {\n        default: \"h-10\",\n        sm: \"h-9 text-xs\",\n        lg: \"h-12 text-base\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      inputSize: \"default\",\n    },\n  }\n);\n\nexport interface InputProps\n  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, \"size\">,\n    VariantProps<typeof inputVariants> {\n  leftIcon?: React.ReactNode;\n  rightIcon?: React.ReactNode;\n}\n\nconst Input = React.forwardRef<HTMLInputElement, InputProps>(\n  ({ className, variant, inputSize, type, leftIcon, rightIcon, ...props }, ref) => {\n    if (leftIcon || rightIcon) {\n      return (\n        <div className=\"relative\">\n          {leftIcon && (\n            <div className=\"absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground\">\n              {leftIcon}\n            </div>\n          )}\n          <input\n            type={type}\n            className={cn(\n              inputVariants({ variant, inputSize, className }),\n              leftIcon && \"pl-10\",\n              rightIcon && \"pr-10\"\n            )}\n            ref={ref}\n            {...props}\n          />\n          {rightIcon && (\n            <div className=\"absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground\">\n              {rightIcon}\n            </div>\n          )}\n        </div>\n      );\n    }\n\n    return (\n      <input\n        type={type}\n        className={cn(inputVariants({ variant, inputSize, className }))}\n        ref={ref}\n        {...props}\n      />\n    );\n  }\n);\nInput.displayName = \"Input\";\n\nexport { Input, inputVariants };\n"
+    }
+  ]
+}
