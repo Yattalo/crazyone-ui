@@ -112,6 +112,84 @@ const retrofutureStyles = `
     }
   }
 
+  /* NEW: Rocket trail */
+  @keyframes rocketTrail {
+    0% {
+      transform: translateY(100vh) scale(0.5);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  /* NEW: Hologram scanlines */
+  @keyframes hologramScan {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  /* NEW: Star twinkle */
+  @keyframes starTwinkle {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.3);
+    }
+  }
+
+  /* NEW: Planet rotate */
+  @keyframes planetRotate {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.1);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+
+  /* NEW: Orbit path pulse */
+  @keyframes orbitPathPulse {
+    0%, 100% {
+      opacity: 0.2;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      opacity: 0.5;
+      stroke-dashoffset: 50;
+    }
+  }
+
+  /* NEW: Signal transmission */
+  @keyframes signalTransmit {
+    0% {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+  }
+
   .animate-orbit {
     animation: orbit 20s linear infinite;
   }
@@ -190,13 +268,181 @@ const retrofutureStyles = `
     display: none;
   }
 
+  /* Rocket trail effect */
+  .rocket-trail {
+    position: fixed;
+    width: 4px;
+    height: 80px;
+    background: linear-gradient(180deg,
+      hsl(14 100% 57%) 0%,
+      hsl(45 100% 60%) 30%,
+      transparent 100%
+    );
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 50;
+    animation: rocketTrail 15s linear infinite;
+    filter: blur(1px);
+  }
+
+  .rocket-trail:nth-child(1) { left: 10%; animation-delay: 0s; }
+  .rocket-trail:nth-child(2) { left: 30%; animation-delay: 3s; }
+  .rocket-trail:nth-child(3) { left: 60%; animation-delay: 6s; }
+  .rocket-trail:nth-child(4) { left: 85%; animation-delay: 9s; }
+
+  /* Hologram overlay */
+  .hologram-overlay {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 2px,
+      hsl(210 100% 60% / 0.02) 2px,
+      hsl(210 100% 60% / 0.02) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .hologram-scan {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      hsl(210 100% 60% / 0.05) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1001;
+    animation: hologramScan 8s linear infinite;
+  }
+
+  /* Stars background */
+  .star {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: hsl(0 0% 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+    animation: starTwinkle 4s ease-in-out infinite;
+  }
+
+  .star:nth-child(1) { top: 8%; left: 12%; animation-delay: 0s; width: 2px; height: 2px; }
+  .star:nth-child(2) { top: 15%; left: 35%; animation-delay: 0.5s; }
+  .star:nth-child(3) { top: 5%; left: 55%; animation-delay: 1s; width: 2px; height: 2px; }
+  .star:nth-child(4) { top: 20%; left: 75%; animation-delay: 1.5s; }
+  .star:nth-child(5) { top: 12%; left: 90%; animation-delay: 2s; width: 2px; height: 2px; }
+  .star:nth-child(6) { top: 25%; left: 20%; animation-delay: 2.5s; }
+  .star:nth-child(7) { top: 8%; left: 45%; animation-delay: 3s; width: 2px; height: 2px; }
+  .star:nth-child(8) { top: 18%; left: 65%; animation-delay: 3.5s; }
+
+  /* Animated planet */
+  .planet-decoration {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 30;
+  }
+
+  .planet-orange {
+    width: 40px;
+    height: 40px;
+    top: 15%;
+    right: 15%;
+    background: radial-gradient(
+      circle at 30% 30%,
+      hsl(30 90% 65%) 0%,
+      hsl(14 100% 57%) 50%,
+      hsl(14 80% 35%) 100%
+    );
+    animation: planetRotate 30s linear infinite;
+    box-shadow: inset -10px -10px 20px hsl(0 0% 0% / 0.3);
+  }
+
+  .planet-blue {
+    width: 25px;
+    height: 25px;
+    bottom: 25%;
+    left: 10%;
+    background: radial-gradient(
+      circle at 30% 30%,
+      hsl(210 80% 70%) 0%,
+      hsl(210 100% 50%) 50%,
+      hsl(210 80% 30%) 100%
+    );
+    animation: planetRotate 25s linear infinite reverse;
+    animation-delay: -5s;
+    box-shadow: inset -6px -6px 12px hsl(0 0% 0% / 0.3);
+  }
+
+  /* Animated orbit paths SVG */
+  .orbit-path-animated {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  .orbit-path-animated circle {
+    fill: none;
+    stroke: hsl(0 0% 80%);
+    stroke-width: 1;
+    stroke-dasharray: 10 10;
+    animation: orbitPathPulse 4s ease-in-out infinite;
+  }
+
+  /* Signal transmission line */
+  .signal-line {
+    position: fixed;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      hsl(14 100% 57%) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 35;
+    animation: signalTransmit 4s ease-in-out infinite;
+  }
+
+  .signal-line-1 {
+    width: 200px;
+    top: 30%;
+    left: 5%;
+    animation-delay: 0s;
+  }
+
+  .signal-line-2 {
+    width: 150px;
+    top: 60%;
+    right: 5%;
+    transform-origin: right;
+    animation-delay: 2s;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-orbit,
     .animate-fade-up,
     .animate-pulse-ring,
     .animate-rotate,
     .animate-glow,
-    .hover-retrofuture {
+    .hover-retrofuture,
+    .rocket-trail,
+    .hologram-scan,
+    .star,
+    .planet-decoration,
+    .planet-orange,
+    .planet-blue,
+    .orbit-path-animated circle,
+    .signal-line {
       animation: none !important;
       transition: none !important;
     }
@@ -308,6 +554,35 @@ export function CasaGiardinoRetrofutureDemo() {
           color: "hsl(0 0% 10%)",
         }}
       >
+        {/* Hologram Overlay & Scan Effect */}
+        <div className="hologram-overlay hidden lg:block" aria-hidden="true" />
+        <div className="hologram-scan hidden lg:block" aria-hidden="true" />
+
+        {/* Twinkling Stars */}
+        {[...Array(8)].map((_, i) => (
+          <div key={`star-${i}`} className="star hidden lg:block" aria-hidden="true" />
+        ))}
+
+        {/* Rocket Trails */}
+        {[...Array(4)].map((_, i) => (
+          <div key={`rocket-${i}`} className="rocket-trail hidden lg:block" aria-hidden="true" />
+        ))}
+
+        {/* Animated Planets */}
+        <div className="planet-decoration planet-orange hidden lg:block" aria-hidden="true" />
+        <div className="planet-decoration planet-blue hidden lg:block" aria-hidden="true" />
+
+        {/* Signal Lines */}
+        <div className="signal-line signal-line-1 hidden lg:block" aria-hidden="true" />
+        <div className="signal-line signal-line-2 hidden lg:block" aria-hidden="true" />
+
+        {/* Animated Orbit Paths */}
+        <svg className="orbit-path-animated hidden lg:block" width="800" height="800" viewBox="0 0 800 800" aria-hidden="true">
+          <circle cx="400" cy="400" r="150" style={{ animationDelay: "0s" }} />
+          <circle cx="400" cy="400" r="250" style={{ animationDelay: "0.5s" }} />
+          <circle cx="400" cy="400" r="350" style={{ animationDelay: "1s" }} />
+        </svg>
+
         {/* ═══════════════════════════════════════════════════════════════════════
             HERO - Space Age
         ═══════════════════════════════════════════════════════════════════════ */}

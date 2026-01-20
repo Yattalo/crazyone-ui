@@ -111,6 +111,87 @@ const synthwaveStyles = `
     }
   }
 
+  /* NEW: Retro sun animation */
+  @keyframes retroSunPulse {
+    0%, 100% {
+      transform: translateX(-50%) scale(1);
+      filter: blur(30px);
+    }
+    50% {
+      transform: translateX(-50%) scale(1.05);
+      filter: blur(40px);
+    }
+  }
+
+  @keyframes sunStripes {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 -20px;
+    }
+  }
+
+  /* NEW: 3D grid perspective */
+  @keyframes perspectiveGrid {
+    0% {
+      background-position: center -100px;
+    }
+    100% {
+      background-position: center 100px;
+    }
+  }
+
+  /* NEW: Laser beam */
+  @keyframes laserSweep {
+    0% {
+      transform: translateX(-100%) rotate(-2deg);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(100vw) rotate(2deg);
+      opacity: 0;
+    }
+  }
+
+  /* NEW: VHS glitch */
+  @keyframes vhsGlitch {
+    0%, 100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    25% {
+      transform: translateX(-2px);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translateX(2px);
+      opacity: 1;
+    }
+    75% {
+      transform: translateX(-1px);
+      opacity: 0.95;
+    }
+  }
+
+  /* NEW: Star twinkle */
+  @keyframes starTwinkle {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
   .animate-neon {
     animation: neonPulse 2s ease-in-out infinite;
   }
@@ -140,6 +221,10 @@ const synthwaveStyles = `
       0 0 60px hsl(185 100% 55% / 0.2);
   }
 
+  .animate-vhs {
+    animation: vhsGlitch 0.5s ease-in-out infinite;
+  }
+
   .retro-grid {
     background-image:
       linear-gradient(hsl(320 100% 60% / 0.1) 1px, transparent 1px),
@@ -147,6 +232,126 @@ const synthwaveStyles = `
     background-size: 50px 50px;
     animation: gridMove 4s linear infinite;
   }
+
+  /* 3D Perspective Grid Floor */
+  .perspective-grid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    background:
+      linear-gradient(180deg,
+        transparent 0%,
+        hsl(320 100% 60% / 0.05) 100%);
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: center bottom;
+    pointer-events: none;
+  }
+
+  .perspective-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        hsl(320 100% 60% / 0.3) 0px,
+        transparent 1px,
+        transparent 60px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        hsl(185 100% 55% / 0.3) 0px,
+        transparent 1px,
+        transparent 40px
+      );
+    animation: perspectiveGrid 2s linear infinite;
+  }
+
+  /* Retro Sun with stripes */
+  .retro-sun {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    border-radius: 200px 200px 0 0;
+    background: linear-gradient(180deg,
+      hsl(30 100% 55%) 0%,
+      hsl(320 100% 60%) 50%,
+      hsl(280 100% 50%) 100%
+    );
+    animation: retroSunPulse 4s ease-in-out infinite;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .retro-sun::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 8px,
+      hsl(260 30% 8%) 8px,
+      hsl(260 30% 8%) 12px
+    );
+    animation: sunStripes 1s linear infinite;
+  }
+
+  /* Laser beams */
+  .laser-beam {
+    position: fixed;
+    height: 2px;
+    pointer-events: none;
+    z-index: 60;
+    animation: laserSweep 8s linear infinite;
+  }
+
+  .laser-pink {
+    width: 300px;
+    top: 30%;
+    background: linear-gradient(90deg, transparent, hsl(320 100% 60%), transparent);
+    box-shadow: 0 0 10px hsl(320 100% 60%), 0 0 20px hsl(320 100% 60%);
+    animation-delay: 0s;
+  }
+
+  .laser-cyan {
+    width: 250px;
+    top: 50%;
+    background: linear-gradient(90deg, transparent, hsl(185 100% 55%), transparent);
+    box-shadow: 0 0 10px hsl(185 100% 55%), 0 0 20px hsl(185 100% 55%);
+    animation-delay: 3s;
+  }
+
+  .laser-purple {
+    width: 200px;
+    top: 70%;
+    background: linear-gradient(90deg, transparent, hsl(280 100% 65%), transparent);
+    box-shadow: 0 0 10px hsl(280 100% 65%), 0 0 20px hsl(280 100% 65%);
+    animation-delay: 6s;
+  }
+
+  /* Stars */
+  .synth-star {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: hsl(0 0% 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+    animation: starTwinkle 3s ease-in-out infinite;
+  }
+
+  .synth-star:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+  .synth-star:nth-child(2) { top: 15%; left: 45%; animation-delay: 0.5s; width: 2px; height: 2px; }
+  .synth-star:nth-child(3) { top: 8%; left: 75%; animation-delay: 1s; }
+  .synth-star:nth-child(4) { top: 20%; left: 25%; animation-delay: 1.5s; width: 2px; height: 2px; }
+  .synth-star:nth-child(5) { top: 12%; left: 85%; animation-delay: 2s; }
+  .synth-star:nth-child(6) { top: 25%; left: 55%; animation-delay: 2.5s; width: 2px; height: 2px; }
 
   .chrome-text {
     background: linear-gradient(180deg,
@@ -200,8 +405,14 @@ const synthwaveStyles = `
     .animate-neon,
     .animate-glow,
     .animate-slide-up,
+    .animate-vhs,
     .hover-synth,
-    .retro-grid {
+    .retro-grid,
+    .perspective-grid::before,
+    .retro-sun,
+    .retro-sun::after,
+    .laser-beam,
+    .synth-star {
       animation: none !important;
       transition: none !important;
     }
@@ -322,20 +533,25 @@ export function CasaGiardinoSynthwaveDemo() {
           color: "hsl(300 100% 95%)",
         }}
       >
+        {/* Twinkling Stars */}
+        {[...Array(6)].map((_, i) => (
+          <div key={`star-${i}`} className="synth-star" aria-hidden="true" />
+        ))}
+
+        {/* Laser Beams */}
+        <div className="laser-beam laser-pink hidden lg:block" aria-hidden="true" />
+        <div className="laser-beam laser-cyan hidden lg:block" aria-hidden="true" />
+        <div className="laser-beam laser-purple hidden lg:block" aria-hidden="true" />
+
         {/* ═══════════════════════════════════════════════════════════════════════
             HERO - Neon Dreams
         ═══════════════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen relative retro-grid overflow-hidden">
-          {/* Sun/Moon gradient */}
-          <div
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-60"
-            style={{
-              background: "linear-gradient(180deg, hsl(30 100% 55%) 0%, hsl(320 100% 60%) 50%, transparent 100%)",
-              borderRadius: "50% 50% 0 0",
-              filter: "blur(40px)",
-            }}
-            aria-hidden="true"
-          />
+          {/* Retro Sun with animated stripes */}
+          <div className="retro-sun hidden md:block" aria-hidden="true" />
+
+          {/* 3D Perspective Grid Floor */}
+          <div className="perspective-grid hidden md:block" aria-hidden="true" />
 
           <nav className="absolute top-0 left-0 right-0 z-20 flex justify-between items-center px-6 md:px-12 lg:px-20 py-6">
             <span

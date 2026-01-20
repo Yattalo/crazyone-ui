@@ -91,6 +91,72 @@ const gelatoStyles = `
     50% { transform: scale(1.05); }
   }
 
+  /* NEW: Cream drip animation */
+  @keyframes creamDrip {
+    0% {
+      transform: translateY(-100%) scaleY(0.5);
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) scaleY(1.5);
+      opacity: 0.3;
+    }
+  }
+
+  /* NEW: Soft blob morph */
+  @keyframes blobMorph {
+    0%, 100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    25% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+    50% {
+      border-radius: 50% 60% 30% 60% / 30% 40% 70% 50%;
+    }
+    75% {
+      border-radius: 60% 30% 60% 40% / 60% 50% 30% 70%;
+    }
+  }
+
+  /* NEW: Sprinkle fall */
+  @keyframes sprinkleFall {
+    0% {
+      transform: translateY(-20px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  /* NEW: Soft glow pulse */
+  @keyframes softGlow {
+    0%, 100% {
+      box-shadow: 0 10px 40px -10px currentColor;
+    }
+    50% {
+      box-shadow: 0 20px 60px -10px currentColor;
+    }
+  }
+
+  /* NEW: Cream wave */
+  @keyframes creamWave {
+    0%, 100% {
+      transform: translateX(0) scaleY(1);
+    }
+    50% {
+      transform: translateX(-10px) scaleY(1.1);
+    }
+  }
+
   .animate-float {
     animation: float 4s ease-in-out infinite;
   }
@@ -140,6 +206,114 @@ const gelatoStyles = `
       );
   }
 
+  .animate-blob {
+    animation: blobMorph 8s ease-in-out infinite;
+  }
+
+  .animate-soft-glow {
+    animation: softGlow 3s ease-in-out infinite;
+  }
+
+  /* Creamy texture overlay */
+  .cream-texture {
+    position: relative;
+  }
+
+  .cream-texture::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 30%, hsl(350 70% 95% / 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, hsl(160 50% 95% / 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, hsl(50 80% 95% / 0.3) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Dripping cream effect */
+  .cream-drip {
+    position: fixed;
+    width: 20px;
+    pointer-events: none;
+    z-index: 60;
+    animation: creamDrip 15s ease-in infinite;
+  }
+
+  .cream-drip::before {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-bottom: 300%;
+    background: linear-gradient(180deg,
+      currentColor 0%,
+      currentColor 60%,
+      transparent 100%
+    );
+    border-radius: 0 0 50% 50%;
+  }
+
+  .cream-drip:nth-child(1) { left: 10%; color: hsl(350 70% 80%); animation-delay: 0s; }
+  .cream-drip:nth-child(2) { left: 30%; color: hsl(160 50% 75%); animation-delay: 3s; }
+  .cream-drip:nth-child(3) { left: 50%; color: hsl(50 80% 75%); animation-delay: 6s; }
+  .cream-drip:nth-child(4) { left: 70%; color: hsl(25 80% 80%); animation-delay: 9s; }
+  .cream-drip:nth-child(5) { left: 90%; color: hsl(270 50% 80%); animation-delay: 12s; }
+
+  /* Sprinkles */
+  .sprinkle {
+    position: fixed;
+    width: 8px;
+    height: 3px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 55;
+    animation: sprinkleFall 20s linear infinite;
+  }
+
+  .sprinkle:nth-child(1) { left: 8%; background: hsl(350 70% 65%); animation-delay: 0s; }
+  .sprinkle:nth-child(2) { left: 18%; background: hsl(160 50% 55%); animation-delay: 2s; }
+  .sprinkle:nth-child(3) { left: 28%; background: hsl(50 80% 55%); animation-delay: 4s; }
+  .sprinkle:nth-child(4) { left: 42%; background: hsl(25 80% 65%); animation-delay: 6s; }
+  .sprinkle:nth-child(5) { left: 55%; background: hsl(270 50% 65%); animation-delay: 8s; }
+  .sprinkle:nth-child(6) { left: 68%; background: hsl(350 70% 65%); animation-delay: 10s; }
+  .sprinkle:nth-child(7) { left: 78%; background: hsl(160 50% 55%); animation-delay: 12s; }
+  .sprinkle:nth-child(8) { left: 92%; background: hsl(50 80% 55%); animation-delay: 14s; }
+
+  /* Soft blob decorations */
+  .soft-blob {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0.15;
+    z-index: 10;
+    animation: blobMorph 10s ease-in-out infinite, float 6s ease-in-out infinite;
+  }
+
+  .blob-pink {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    right: 5%;
+    background: hsl(350 70% 75%);
+    animation-delay: 0s;
+  }
+
+  .blob-mint {
+    width: 150px;
+    height: 150px;
+    bottom: 15%;
+    left: 5%;
+    background: hsl(160 50% 70%);
+    animation-delay: -2s;
+  }
+
+  .blob-lemon {
+    width: 120px;
+    height: 120px;
+    top: 50%;
+    left: 10%;
+    background: hsl(50 80% 70%);
+    animation-delay: -4s;
+  }
+
   .gallery-scroll-gelato {
     display: flex;
     gap: 2rem;
@@ -158,7 +332,12 @@ const gelatoStyles = `
     .animate-melt,
     .animate-shimmer,
     .animate-scoop,
-    .hover-gelato {
+    .animate-blob,
+    .animate-soft-glow,
+    .hover-gelato,
+    .cream-drip,
+    .sprinkle,
+    .soft-blob {
       animation: none !important;
       transition: none !important;
     }
@@ -272,12 +451,27 @@ export function CasaGiardinoGelatoDemo() {
     <>
       <style>{gelatoStyles}</style>
       <div
-        className="pastel-gradient relative overflow-x-hidden"
+        className="pastel-gradient cream-texture relative overflow-x-hidden"
         style={{
           fontFamily: "'Nunito', sans-serif",
           color: "hsl(350 30% 20%)",
         }}
       >
+        {/* Soft Blob Decorations */}
+        <div className="soft-blob blob-pink hidden lg:block" aria-hidden="true" />
+        <div className="soft-blob blob-mint hidden lg:block" aria-hidden="true" />
+        <div className="soft-blob blob-lemon hidden lg:block" aria-hidden="true" />
+
+        {/* Cream Drips */}
+        {[...Array(5)].map((_, i) => (
+          <div key={`drip-${i}`} className="cream-drip hidden lg:block" aria-hidden="true" />
+        ))}
+
+        {/* Falling Sprinkles */}
+        {[...Array(8)].map((_, i) => (
+          <div key={`sprinkle-${i}`} className="sprinkle hidden lg:block" aria-hidden="true" />
+        ))}
+
         {/* ═══════════════════════════════════════════════════════════════════════
             HERO - Dolce Vita
         ═══════════════════════════════════════════════════════════════════════ */}

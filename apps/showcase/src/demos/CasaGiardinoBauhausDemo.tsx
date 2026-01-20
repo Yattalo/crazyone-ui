@@ -91,6 +91,59 @@ const bauhausStyles = `
     66% { background-color: hsl(220 85% 50%); }
   }
 
+  /* NEW: Orbiting geometric shapes */
+  @keyframes orbit {
+    0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+  }
+
+  @keyframes orbitReverse {
+    0% { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+    100% { transform: rotate(-360deg) translateX(120px) rotate(360deg); }
+  }
+
+  /* NEW: Bouncing geometry */
+  @keyframes bounceGeometry {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-20px) scale(1.1);
+    }
+  }
+
+  /* NEW: Grid pulse animation */
+  @keyframes gridPulse {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+
+  /* NEW: Shape morph */
+  @keyframes shapeMorph {
+    0%, 100% {
+      border-radius: 0%;
+    }
+    50% {
+      border-radius: 50%;
+    }
+  }
+
+  /* NEW: Line extend */
+  @keyframes lineExtend {
+    0% {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    100% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
   .animate-slide-in {
     animation: slideIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
@@ -122,11 +175,165 @@ const bauhausStyles = `
     box-shadow: 8px 8px 0 hsl(0 0% 8%);
   }
 
+  .animate-orbit {
+    animation: orbit 25s linear infinite;
+  }
+
+  .animate-orbit-reverse {
+    animation: orbitReverse 30s linear infinite;
+  }
+
+  .animate-bounce-geo {
+    animation: bounceGeometry 3s ease-in-out infinite;
+  }
+
+  .animate-morph {
+    animation: shapeMorph 4s ease-in-out infinite;
+  }
+
+  .animate-line-extend {
+    animation: lineExtend 1s ease-out forwards;
+  }
+
   .grid-overlay {
     background-image:
       linear-gradient(hsl(0 0% 85%) 1px, transparent 1px),
       linear-gradient(90deg, hsl(0 0% 85%) 1px, transparent 1px);
     background-size: 40px 40px;
+    position: relative;
+  }
+
+  /* Dynamic grid with animation */
+  .grid-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(hsl(0 85% 50% / 0.1) 2px, transparent 2px),
+      linear-gradient(90deg, hsl(220 85% 50% / 0.1) 2px, transparent 2px);
+    background-size: 200px 200px;
+    animation: gridPulse 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Orbital container */
+  .orbital-container {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  .orbital-shape {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+  }
+
+  .orbital-shape.red {
+    background-color: hsl(0 85% 50%);
+    animation: orbit 20s linear infinite;
+  }
+
+  .orbital-shape.yellow {
+    background-color: hsl(50 95% 55%);
+    border-radius: 50%;
+    animation: orbitReverse 25s linear infinite;
+  }
+
+  .orbital-shape.blue {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 17px solid hsl(220 85% 50%);
+    animation: orbit 30s linear infinite;
+    animation-delay: -5s;
+  }
+
+  /* Floating geometric decorations */
+  .geo-decoration {
+    position: fixed;
+    pointer-events: none;
+    z-index: 40;
+  }
+
+  .geo-red-square {
+    width: 40px;
+    height: 40px;
+    background-color: hsl(0 85% 50%);
+    top: 15%;
+    right: 10%;
+    animation: bounceGeometry 4s ease-in-out infinite;
+  }
+
+  .geo-yellow-circle {
+    width: 30px;
+    height: 30px;
+    background-color: hsl(50 95% 55%);
+    border-radius: 50%;
+    bottom: 20%;
+    left: 5%;
+    animation: bounceGeometry 5s ease-in-out infinite;
+    animation-delay: -1s;
+  }
+
+  .geo-blue-triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 35px solid hsl(220 85% 50%);
+    top: 60%;
+    right: 5%;
+    animation: bounceGeometry 3.5s ease-in-out infinite;
+    animation-delay: -2s;
+  }
+
+  .geo-morph {
+    width: 25px;
+    height: 25px;
+    background-color: hsl(0 0% 8%);
+    top: 40%;
+    left: 8%;
+    animation: shapeMorph 6s ease-in-out infinite, bounceGeometry 4s ease-in-out infinite;
+  }
+
+  /* Animated lines */
+  .bauhaus-line {
+    position: fixed;
+    height: 3px;
+    pointer-events: none;
+    z-index: 30;
+    animation: lineExtend 2s ease-out forwards;
+  }
+
+  .line-red {
+    width: 150px;
+    background-color: hsl(0 85% 50%);
+    top: 25%;
+    left: 0;
+    animation-delay: 0.5s;
+  }
+
+  .line-yellow {
+    width: 100px;
+    background-color: hsl(50 95% 55%);
+    top: 75%;
+    right: 0;
+    transform-origin: right;
+    animation-delay: 1s;
+  }
+
+  .line-blue {
+    width: 80px;
+    background-color: hsl(220 85% 50%);
+    bottom: 30%;
+    left: 5%;
+    animation-delay: 1.5s;
   }
 
   .gallery-scroll-bau {
@@ -147,7 +354,20 @@ const bauhausStyles = `
     .animate-rotate,
     .animate-pulse-bau,
     .animate-color-shift,
-    .hover-bauhaus {
+    .animate-orbit,
+    .animate-orbit-reverse,
+    .animate-bounce-geo,
+    .animate-morph,
+    .animate-line-extend,
+    .hover-bauhaus,
+    .orbital-shape,
+    .geo-decoration,
+    .geo-red-square,
+    .geo-yellow-circle,
+    .geo-blue-triangle,
+    .geo-morph,
+    .bauhaus-line,
+    .grid-overlay::before {
       animation: none !important;
       transition: none !important;
     }
@@ -268,6 +488,17 @@ export function CasaGiardinoBauhausDemo() {
           color: "hsl(0 0% 8%)",
         }}
       >
+        {/* Floating Geometric Decorations */}
+        <div className="geo-decoration geo-red-square hidden lg:block" aria-hidden="true" />
+        <div className="geo-decoration geo-yellow-circle hidden lg:block" aria-hidden="true" />
+        <div className="geo-decoration geo-blue-triangle hidden lg:block" aria-hidden="true" />
+        <div className="geo-decoration geo-morph hidden lg:block" aria-hidden="true" />
+
+        {/* Animated Lines */}
+        <div className="bauhaus-line line-red hidden lg:block" aria-hidden="true" />
+        <div className="bauhaus-line line-yellow hidden lg:block" aria-hidden="true" />
+        <div className="bauhaus-line line-blue hidden lg:block" aria-hidden="true" />
+
         {/* ═══════════════════════════════════════════════════════════════════════
             HERO - Geometric Revolution
         ═══════════════════════════════════════════════════════════════════════ */}

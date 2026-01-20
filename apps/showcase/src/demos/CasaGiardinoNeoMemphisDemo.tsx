@@ -115,6 +115,83 @@ const neoMemphisStyles = `
     50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
   }
 
+  /* NEW: Squiggle animation */
+  @keyframes squiggleMove {
+    0%, 100% {
+      d: path('M0,50 Q25,0 50,50 T100,50');
+    }
+    50% {
+      d: path('M0,50 Q25,100 50,50 T100,50');
+    }
+  }
+
+  @keyframes squiggleFloat {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* NEW: Confetti explosion */
+  @keyframes confettiPop {
+    0% {
+      transform: scale(0) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.5) rotate(180deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes confettiFall {
+    0% {
+      transform: translateY(-20px) rotate(0deg);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  /* NEW: Terrazzo pattern movement */
+  @keyframes terrazzoShift {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+
+  /* NEW: Shape pop */
+  @keyframes shapePop {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
   .animate-wiggle {
     animation: wiggle 3s ease-in-out infinite;
   }
@@ -208,6 +285,148 @@ const neoMemphisStyles = `
     );
   }
 
+  .animate-shape-pop {
+    animation: shapePop 2s ease-in-out infinite;
+  }
+
+  /* Floating squiggles */
+  .squiggle {
+    position: fixed;
+    width: 80px;
+    height: 30px;
+    pointer-events: none;
+    z-index: 50;
+    animation: squiggleFloat 25s linear infinite;
+  }
+
+  .squiggle svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .squiggle:nth-child(1) { left: 5%; animation-delay: 0s; }
+  .squiggle:nth-child(2) { left: 25%; animation-delay: 5s; }
+  .squiggle:nth-child(3) { left: 45%; animation-delay: 10s; }
+  .squiggle:nth-child(4) { left: 65%; animation-delay: 15s; }
+  .squiggle:nth-child(5) { left: 85%; animation-delay: 20s; }
+
+  /* Confetti pieces */
+  .confetti {
+    position: fixed;
+    pointer-events: none;
+    z-index: 100;
+    animation: confettiFall 15s linear infinite;
+  }
+
+  .confetti-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .confetti-square {
+    width: 8px;
+    height: 8px;
+  }
+
+  .confetti-triangle {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid currentColor;
+  }
+
+  .confetti:nth-child(1) { left: 8%; color: hsl(345 100% 60%); animation-delay: 0s; }
+  .confetti:nth-child(2) { left: 18%; color: hsl(175 80% 50%); animation-delay: 1s; }
+  .confetti:nth-child(3) { left: 28%; color: hsl(45 100% 60%); animation-delay: 2s; }
+  .confetti:nth-child(4) { left: 38%; color: hsl(280 80% 60%); animation-delay: 3s; }
+  .confetti:nth-child(5) { left: 48%; color: hsl(345 100% 60%); animation-delay: 4s; }
+  .confetti:nth-child(6) { left: 58%; color: hsl(175 80% 50%); animation-delay: 5s; }
+  .confetti:nth-child(7) { left: 68%; color: hsl(45 100% 60%); animation-delay: 6s; }
+  .confetti:nth-child(8) { left: 78%; color: hsl(280 80% 60%); animation-delay: 7s; }
+  .confetti:nth-child(9) { left: 88%; color: hsl(345 100% 60%); animation-delay: 8s; }
+  .confetti:nth-child(10) { left: 95%; color: hsl(175 80% 50%); animation-delay: 9s; }
+
+  /* Dynamic terrazzo background */
+  .terrazzo-bg {
+    position: relative;
+  }
+
+  .terrazzo-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse 8px 5px at 15% 20%, hsl(345 100% 70%) 50%, transparent 50%),
+      radial-gradient(ellipse 6px 8px at 35% 45%, hsl(175 80% 60%) 50%, transparent 50%),
+      radial-gradient(ellipse 10px 6px at 55% 25%, hsl(45 100% 70%) 50%, transparent 50%),
+      radial-gradient(ellipse 5px 7px at 75% 65%, hsl(280 80% 70%) 50%, transparent 50%),
+      radial-gradient(ellipse 7px 5px at 25% 75%, hsl(145 70% 60%) 50%, transparent 50%),
+      radial-gradient(ellipse 6px 9px at 85% 35%, hsl(345 100% 70%) 50%, transparent 50%),
+      radial-gradient(ellipse 8px 6px at 45% 85%, hsl(175 80% 60%) 50%, transparent 50%),
+      radial-gradient(ellipse 5px 8px at 65% 15%, hsl(45 100% 70%) 50%, transparent 50%);
+    background-size: 200px 200px;
+    opacity: 0.3;
+    animation: terrazzoShift 30s linear infinite;
+    pointer-events: none;
+  }
+
+  /* Floating Memphis shapes (enhanced) */
+  .memphis-float {
+    position: fixed;
+    pointer-events: none;
+    z-index: 40;
+    opacity: 0.5;
+  }
+
+  .memphis-float.circle-1 {
+    width: 100px;
+    height: 100px;
+    background: hsl(345 100% 60%);
+    border-radius: 50%;
+    top: 10%;
+    right: 8%;
+    animation: bounce-soft 4s ease-in-out infinite, shapePop 8s ease-in-out infinite;
+  }
+
+  .memphis-float.triangle-1 {
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 70px solid hsl(175 80% 50%);
+    bottom: 15%;
+    left: 5%;
+    animation: wiggle 5s ease-in-out infinite;
+  }
+
+  .memphis-float.square-1 {
+    width: 60px;
+    height: 60px;
+    background: hsl(45 100% 60%);
+    top: 50%;
+    left: 3%;
+    animation: bounce-soft 3s ease-in-out infinite;
+    animation-delay: -1s;
+  }
+
+  .memphis-float.squiggle-line {
+    width: 120px;
+    height: 40px;
+    background: repeating-linear-gradient(
+      90deg,
+      hsl(280 80% 60%) 0px,
+      hsl(280 80% 60%) 15px,
+      transparent 15px,
+      transparent 30px
+    );
+    top: 30%;
+    right: 5%;
+    animation: wiggle 4s ease-in-out infinite;
+    animation-delay: -2s;
+  }
+
   .gallery-scroll-nm {
     display: flex;
     gap: 2rem;
@@ -227,7 +446,12 @@ const neoMemphisStyles = `
     .animate-slide-in,
     .animate-color-cycle,
     .animate-morph,
-    .hover-memphis {
+    .animate-shape-pop,
+    .hover-memphis,
+    .squiggle,
+    .confetti,
+    .memphis-float,
+    .terrazzo-bg::before {
       animation: none !important;
       transition: none !important;
     }
@@ -341,16 +565,46 @@ export function CasaGiardinoNeoMemphisDemo() {
     <>
       <style>{neoMemphisStyles}</style>
       <div
-        className="relative overflow-x-hidden memphis-pattern"
+        className="relative overflow-x-hidden memphis-pattern terrazzo-bg"
         style={{
           fontFamily: "'Outfit', sans-serif",
           backgroundColor: "hsl(280 40% 95%)",
           color: "hsl(280 80% 20%)",
         }}
       >
-        {/* Floating geometric shapes */}
-        <div className="geometric-shape shape-circle animate-bounce-soft" style={{ top: "15%", left: "5%" }} aria-hidden="true" />
-        <div className="geometric-shape shape-triangle animate-wiggle" style={{ top: "60%", right: "8%", animationDelay: "0.5s" }} aria-hidden="true" />
+        {/* Enhanced Memphis Floating Shapes */}
+        <div className="memphis-float circle-1 hidden lg:block" aria-hidden="true" />
+        <div className="memphis-float triangle-1 hidden lg:block" aria-hidden="true" />
+        <div className="memphis-float square-1 hidden lg:block" aria-hidden="true" />
+        <div className="memphis-float squiggle-line hidden lg:block" aria-hidden="true" />
+
+        {/* Floating Squiggles */}
+        {[...Array(5)].map((_, i) => (
+          <div key={`squiggle-${i}`} className="squiggle hidden lg:block" aria-hidden="true">
+            <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0,15 Q25,0 50,15 T100,15"
+                fill="none"
+                stroke={["hsl(345 100% 60%)", "hsl(175 80% 50%)", "hsl(45 100% 60%)", "hsl(280 80% 60%)", "hsl(145 70% 50%)"][i]}
+                strokeWidth="4"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+        ))}
+
+        {/* Falling Confetti */}
+        {[...Array(10)].map((_, i) => {
+          const shapes = ["confetti-circle", "confetti-square", "confetti-triangle"];
+          return (
+            <div
+              key={`confetti-${i}`}
+              className={`confetti ${shapes[i % 3]} hidden lg:block`}
+              style={{ backgroundColor: i % 3 !== 2 ? "currentColor" : undefined }}
+              aria-hidden="true"
+            />
+          );
+        })}
 
         {/* ═══════════════════════════════════════════════════════════════════════
             HERO - Neo-Memphis Fun

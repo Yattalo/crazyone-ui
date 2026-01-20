@@ -107,6 +107,65 @@ const campfireStyles = `
     75% { transform: translateX(1px); }
   }
 
+  /* NEW: Floating ember particle animation */
+  @keyframes emberFloat {
+    0% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-150px) translateX(20px) scale(0.8);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-300px) translateX(-10px) scale(0.3);
+      opacity: 0;
+    }
+  }
+
+  /* NEW: Radiant heat wave */
+  @keyframes heatWave {
+    0%, 100% {
+      transform: scaleY(1) scaleX(1);
+      opacity: 0.3;
+    }
+    50% {
+      transform: scaleY(1.02) scaleX(0.98);
+      opacity: 0.5;
+    }
+  }
+
+  /* NEW: Wood grain shimmer */
+  @keyframes woodShimmer {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+
+  /* NEW: Smoke wisp */
+  @keyframes smokeWisp {
+    0% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.15;
+    }
+    80% {
+      opacity: 0.1;
+    }
+    100% {
+      transform: translateY(-200px) translateX(50px) rotate(180deg);
+      opacity: 0;
+    }
+  }
+
   .animate-fire {
     animation: fireFlicker 3s ease-in-out infinite;
   }
@@ -123,6 +182,10 @@ const campfireStyles = `
     animation: crackle 0.3s ease-in-out infinite;
   }
 
+  .animate-heat-wave {
+    animation: heatWave 4s ease-in-out infinite;
+  }
+
   .delay-100 { animation-delay: 100ms; }
   .delay-200 { animation-delay: 200ms; }
   .delay-300 { animation-delay: 300ms; }
@@ -131,21 +194,93 @@ const campfireStyles = `
 
   .hover-campfire {
     transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
   }
 
   .hover-campfire:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 40px -10px hsl(25 85% 55% / 0.3);
+    box-shadow:
+      0 20px 40px -10px hsl(25 85% 55% / 0.3),
+      0 0 60px -20px hsl(25 85% 55% / 0.2);
   }
 
-  .wood-texture {
-    background-image: repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 2px,
-      hsl(30 20% 15% / 0.5) 2px,
-      hsl(30 20% 15% / 0.5) 4px
+  /* Radiant heat glow on hover */
+  .hover-campfire::after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(
+      ellipse at center bottom,
+      hsl(25 85% 55% / 0.1) 0%,
+      transparent 60%
     );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .hover-campfire:hover::after {
+    opacity: 1;
+  }
+
+  /* Enhanced realistic wood texture */
+  .wood-texture {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        hsl(30 20% 15% / 0.5) 2px,
+        hsl(30 20% 15% / 0.5) 4px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 8px,
+        hsl(25 30% 18% / 0.3) 8px,
+        hsl(25 30% 18% / 0.3) 16px
+      );
+    position: relative;
+  }
+
+  .wood-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='wood'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.1' numOctaves='3' seed='5'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23wood)'/%3E%3C/svg%3E");
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* Wood grain pattern */
+  .wood-grain {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wood-grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        85deg,
+        hsl(25 40% 25% / 0.1) 0px,
+        transparent 1px,
+        transparent 20px,
+        hsl(25 40% 25% / 0.05) 21px
+      ),
+      repeating-linear-gradient(
+        95deg,
+        hsl(30 30% 20% / 0.08) 0px,
+        transparent 1px,
+        transparent 35px,
+        hsl(30 30% 20% / 0.04) 36px
+      );
+    pointer-events: none;
   }
 
   .warm-gradient {
@@ -154,6 +289,80 @@ const campfireStyles = `
       hsl(25 25% 10%) 50%,
       hsl(20 30% 8%) 100%);
   }
+
+  /* Radiant heat overlay from bottom */
+  .heat-radiant {
+    position: relative;
+  }
+
+  .heat-radiant::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    background: radial-gradient(
+      ellipse 100% 80% at 50% 100%,
+      hsl(25 85% 55% / 0.06) 0%,
+      hsl(35 80% 50% / 0.03) 30%,
+      transparent 70%
+    );
+    pointer-events: none;
+    animation: heatWave 6s ease-in-out infinite;
+    z-index: 0;
+  }
+
+  /* Floating ember particle */
+  .floating-ember {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100;
+    animation: emberFloat 6s ease-out infinite;
+  }
+
+  .floating-ember::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: inherit;
+    filter: blur(3px);
+    opacity: 0.6;
+  }
+
+  .floating-ember:nth-child(1) { left: 20%; bottom: 10%; animation-delay: 0s; background: hsl(25 100% 60%); }
+  .floating-ember:nth-child(2) { left: 40%; bottom: 8%; animation-delay: 1s; background: hsl(35 100% 55%); }
+  .floating-ember:nth-child(3) { left: 60%; bottom: 12%; animation-delay: 2s; background: hsl(15 100% 50%); }
+  .floating-ember:nth-child(4) { left: 75%; bottom: 6%; animation-delay: 3s; background: hsl(40 100% 60%); }
+  .floating-ember:nth-child(5) { left: 30%; bottom: 15%; animation-delay: 4s; background: hsl(20 100% 55%); }
+  .floating-ember:nth-child(6) { left: 55%; bottom: 5%; animation-delay: 5s; background: hsl(30 100% 58%); }
+  .floating-ember:nth-child(7) { left: 85%; bottom: 10%; animation-delay: 2.5s; background: hsl(25 100% 52%); }
+  .floating-ember:nth-child(8) { left: 10%; bottom: 8%; animation-delay: 3.5s; background: hsl(35 100% 50%); }
+
+  /* Smoke wisp element */
+  .smoke-wisp {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      hsl(30 10% 50% / 0.15) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 50;
+    animation: smokeWisp 12s ease-out infinite;
+    filter: blur(10px);
+  }
+
+  .smoke-wisp:nth-child(1) { left: 30%; bottom: 20%; animation-delay: 0s; }
+  .smoke-wisp:nth-child(2) { left: 50%; bottom: 15%; animation-delay: 4s; }
+  .smoke-wisp:nth-child(3) { left: 70%; bottom: 25%; animation-delay: 8s; }
 
   .gallery-scroll-camp {
     display: flex;
@@ -173,7 +382,11 @@ const campfireStyles = `
     .animate-ember,
     .animate-smoke,
     .animate-crackle,
-    .hover-campfire {
+    .animate-heat-wave,
+    .hover-campfire,
+    .floating-ember,
+    .smoke-wisp,
+    .heat-radiant::after {
       animation: none !important;
       transition: none !important;
     }
@@ -277,8 +490,19 @@ export function CasaGiardinoCampfireDemo() {
   return (
     <>
       <style>{campfireStyles}</style>
+
+      {/* Floating ember particles */}
+      {[...Array(8)].map((_, i) => (
+        <div key={i} className="floating-ember" aria-hidden="true" />
+      ))}
+
+      {/* Smoke wisps */}
+      {[...Array(3)].map((_, i) => (
+        <div key={`smoke-${i}`} className="smoke-wisp" aria-hidden="true" />
+      ))}
+
       <div
-        className="warm-gradient relative overflow-x-hidden"
+        className="warm-gradient heat-radiant relative overflow-x-hidden wood-grain"
         style={{
           fontFamily: "'Work Sans', sans-serif",
           color: "hsl(35 30% 92%)",

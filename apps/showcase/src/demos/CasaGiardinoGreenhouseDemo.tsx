@@ -94,6 +94,64 @@ const greenhouseStyles = `
     50% { opacity: 0.6; transform: scale(1.1); }
   }
 
+  /* NEW: Condensation droplet animation */
+  @keyframes condensationDrip {
+    0% {
+      transform: translateY(0) scaleY(1);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    70% {
+      transform: translateY(0) scaleY(1);
+      opacity: 0.6;
+    }
+    90% {
+      transform: translateY(100px) scaleY(1.5);
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(120px) scaleY(0.5);
+      opacity: 0;
+    }
+  }
+
+  /* NEW: Fog/mist animation */
+  @keyframes mistFloat {
+    0%, 100% {
+      transform: translateX(-20px) translateY(0);
+      opacity: 0.15;
+    }
+    50% {
+      transform: translateX(20px) translateY(-10px);
+      opacity: 0.25;
+    }
+  }
+
+  /* NEW: Glass refraction shimmer */
+  @keyframes glassShimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* NEW: Botanical leaf pattern float */
+  @keyframes botanicalFloat {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-5px) rotate(1deg);
+    }
+    75% {
+      transform: translateY(5px) rotate(-1deg);
+    }
+  }
+
   .animate-grow-up {
     animation: growUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
@@ -111,6 +169,14 @@ const greenhouseStyles = `
     animation: dewDrop 3s ease-in-out infinite;
   }
 
+  .animate-mist {
+    animation: mistFloat 8s ease-in-out infinite;
+  }
+
+  .animate-botanical-float {
+    animation: botanicalFloat 10s ease-in-out infinite;
+  }
+
   .delay-100 { animation-delay: 100ms; }
   .delay-200 { animation-delay: 200ms; }
   .delay-300 { animation-delay: 300ms; }
@@ -126,12 +192,80 @@ const greenhouseStyles = `
     box-shadow: 0 30px 60px -15px hsl(145 45% 32% / 0.2);
   }
 
+  /* Enhanced glass panel with realistic glass effect */
   .glass-panel {
     background: linear-gradient(135deg,
-      hsl(140 25% 98% / 0.9) 0%,
-      hsl(140 25% 98% / 0.7) 100%);
-    backdrop-filter: blur(20px);
-    border: 1px solid hsl(145 45% 32% / 0.1);
+      hsl(140 25% 98% / 0.92) 0%,
+      hsl(140 30% 96% / 0.85) 50%,
+      hsl(140 25% 98% / 0.9) 100%);
+    backdrop-filter: blur(20px) saturate(1.2);
+    border: 1px solid hsl(145 45% 32% / 0.12);
+    box-shadow:
+      inset 0 1px 0 0 hsl(0 0% 100% / 0.4),
+      inset 0 -1px 0 0 hsl(145 45% 32% / 0.05),
+      0 4px 12px -2px hsl(145 45% 32% / 0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Glass refraction highlight */
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(0 0% 100% / 0.15) 50%,
+      transparent 100%
+    );
+    transform: skewX(-20deg);
+    pointer-events: none;
+    transition: left 0.8s ease;
+  }
+
+  .glass-panel:hover::before {
+    left: 200%;
+  }
+
+  /* Condensation effect overlay */
+  .glass-condensation {
+    position: relative;
+  }
+
+  .glass-condensation::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, hsl(200 50% 90% / 0.4) 0%, transparent 2px),
+      radial-gradient(circle at 60% 15%, hsl(200 50% 90% / 0.3) 0%, transparent 3px),
+      radial-gradient(circle at 80% 45%, hsl(200 50% 90% / 0.35) 0%, transparent 2px),
+      radial-gradient(circle at 15% 70%, hsl(200 50% 90% / 0.3) 0%, transparent 2px),
+      radial-gradient(circle at 40% 85%, hsl(200 50% 90% / 0.4) 0%, transparent 3px),
+      radial-gradient(circle at 70% 75%, hsl(200 50% 90% / 0.25) 0%, transparent 2px),
+      radial-gradient(circle at 90% 20%, hsl(200 50% 90% / 0.35) 0%, transparent 2px),
+      radial-gradient(circle at 35% 50%, hsl(200 50% 90% / 0.3) 0%, transparent 4px);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  /* Botanical background pattern */
+  .botanical-bg {
+    position: relative;
+  }
+
+  .botanical-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 C30 5 20 15 20 25 C20 35 30 40 30 40 C30 40 40 35 40 25 C40 15 30 5 30 5Z' fill='%233D7A5A' fill-opacity='0.03'/%3E%3Cpath d='M30 8 L30 38' stroke='%233D7A5A' stroke-opacity='0.05' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-size: 60px 60px;
+    opacity: 0.8;
+    pointer-events: none;
   }
 
   .botanical-border {
@@ -149,6 +283,45 @@ const greenhouseStyles = `
     background: linear-gradient(90deg, transparent, hsl(145 45% 32%), transparent);
   }
 
+  /* Victorian greenhouse frame decoration */
+  .greenhouse-frame {
+    position: relative;
+  }
+
+  .greenhouse-frame::before,
+  .greenhouse-frame::after {
+    content: '';
+    position: absolute;
+    background: hsl(145 45% 32% / 0.15);
+    pointer-events: none;
+  }
+
+  .greenhouse-frame::before {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+  }
+
+  .greenhouse-frame::after {
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+  }
+
+  /* Mist/fog overlay */
+  .mist-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 80%, hsl(140 30% 95% / 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, hsl(140 30% 95% / 0.3) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 50%, hsl(140 30% 95% / 0.2) 0%, transparent 60%);
+    pointer-events: none;
+    animation: mistFloat 12s ease-in-out infinite;
+  }
+
   .gallery-scroll-green {
     display: flex;
     gap: 2rem;
@@ -162,14 +335,44 @@ const greenhouseStyles = `
     display: none;
   }
 
+  /* Condensation drip element */
+  .condensation-drip {
+    position: absolute;
+    width: 3px;
+    height: 8px;
+    background: linear-gradient(
+      180deg,
+      hsl(200 50% 90% / 0.6) 0%,
+      hsl(200 50% 90% / 0.2) 100%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    animation: condensationDrip 8s ease-in-out infinite;
+  }
+
+  .condensation-drip:nth-child(1) { left: 15%; animation-delay: 0s; }
+  .condensation-drip:nth-child(2) { left: 35%; animation-delay: 2s; }
+  .condensation-drip:nth-child(3) { left: 55%; animation-delay: 4s; }
+  .condensation-drip:nth-child(4) { left: 75%; animation-delay: 6s; }
+  .condensation-drip:nth-child(5) { left: 90%; animation-delay: 1s; }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-grow-up,
     .animate-leaf-sway,
     .animate-photosynthesis,
     .animate-dew,
-    .hover-greenhouse {
+    .animate-mist,
+    .animate-botanical-float,
+    .hover-greenhouse,
+    .mist-overlay,
+    .condensation-drip,
+    .glass-panel::before {
       animation: none !important;
       transition: none !important;
+    }
+
+    .glass-panel:hover::before {
+      left: -100%;
     }
   }
 `;
@@ -271,14 +474,23 @@ export function CasaGiardinoGreenhouseDemo() {
   return (
     <>
       <style>{greenhouseStyles}</style>
+
+      {/* Condensation drips on "glass" */}
+      {[...Array(5)].map((_, i) => (
+        <div key={i} className="condensation-drip" style={{ top: '10%' }} aria-hidden="true" />
+      ))}
+
       <div
-        className="relative overflow-x-hidden"
+        className="relative overflow-x-hidden botanical-bg"
         style={{
           fontFamily: "'Outfit', sans-serif",
           backgroundColor: "hsl(140 20% 95%)",
           color: "hsl(150 30% 10%)",
         }}
       >
+        {/* Mist overlay for greenhouse atmosphere */}
+        <div className="mist-overlay" aria-hidden="true" />
+
         {/* ═══════════════════════════════════════════════════════════════════════
             HERO - Verdant Elegance
         ═══════════════════════════════════════════════════════════════════════ */}
@@ -411,7 +623,7 @@ export function CasaGiardinoGreenhouseDemo() {
                 aria-label="Lush greenhouse interior with tropical plants"
               />
               <div
-                className="absolute bottom-12 left-8 right-8 lg:left-16 lg:right-16 p-6 glass-panel"
+                className="absolute bottom-12 left-8 right-8 lg:left-16 lg:right-16 p-6 glass-panel glass-condensation"
                 style={{ borderRadius: "8px" }}
               >
                 <div className="flex items-center gap-4">

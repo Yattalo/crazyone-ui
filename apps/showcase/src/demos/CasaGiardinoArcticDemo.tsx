@@ -63,12 +63,36 @@ const arcticStyles = `
     letter-spacing: -0.02em;
   }
 
+  /* Enhanced aurora borealis animation */
   @keyframes auroraShift {
     0%, 100% {
       background-position: 0% 50%;
+      opacity: 0.3;
+    }
+    25% {
+      opacity: 0.5;
     }
     50% {
       background-position: 100% 50%;
+      opacity: 0.4;
+    }
+    75% {
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes auroraWave {
+    0%, 100% {
+      transform: translateY(0) scaleX(1);
+      filter: hue-rotate(0deg);
+    }
+    33% {
+      transform: translateY(-20px) scaleX(1.1);
+      filter: hue-rotate(15deg);
+    }
+    66% {
+      transform: translateY(10px) scaleX(0.95);
+      filter: hue-rotate(-10deg);
     }
   }
 
@@ -96,9 +120,51 @@ const arcticStyles = `
     50% { transform: scale(1.02); }
   }
 
+  /* NEW: Ice crystal sparkle */
+  @keyframes crystalSparkle {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2) rotate(30deg);
+    }
+  }
+
+  /* NEW: Frost spread animation */
+  @keyframes frostSpread {
+    0% {
+      background-size: 0% 100%;
+      opacity: 0;
+    }
+    100% {
+      background-size: 100% 100%;
+      opacity: 1;
+    }
+  }
+
+  /* NEW: Snowflake float */
+  @keyframes snowflakeFloat {
+    0% {
+      transform: translateY(-100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
   .animate-aurora {
     background-size: 200% 200%;
-    animation: auroraShift 10s ease infinite;
+    animation: auroraShift 10s ease infinite, auroraWave 15s ease-in-out infinite;
   }
 
   .animate-crystal {
@@ -111,6 +177,10 @@ const arcticStyles = `
 
   .animate-breathe {
     animation: breathe 4s ease-in-out infinite;
+  }
+
+  .animate-sparkle {
+    animation: crystalSparkle 4s ease-in-out infinite;
   }
 
   .delay-100 { animation-delay: 100ms; }
@@ -129,16 +199,131 @@ const arcticStyles = `
     box-shadow: 0 20px 40px -15px hsl(200 70% 50% / 0.15);
   }
 
+  /* Enhanced frost glass with ice texture */
   .frost-glass {
     background: linear-gradient(135deg,
       hsl(210 30% 100% / 0.95) 0%,
+      hsl(200 40% 98% / 0.9) 50%,
       hsl(210 30% 100% / 0.85) 100%);
-    backdrop-filter: blur(30px);
-    border: 1px solid hsl(210 20% 90%);
+    backdrop-filter: blur(30px) saturate(1.3);
+    border: 1px solid hsl(200 70% 85% / 0.5);
+    box-shadow:
+      inset 0 1px 0 0 hsl(0 0% 100% / 0.5),
+      0 4px 20px -5px hsl(200 70% 50% / 0.1);
+    position: relative;
+  }
+
+  /* Frost texture overlay */
+  .frost-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 30% 20%, hsl(200 80% 95% / 0.4) 0%, transparent 2px),
+      radial-gradient(circle at 70% 80%, hsl(200 80% 95% / 0.3) 0%, transparent 2px),
+      radial-gradient(circle at 50% 50%, hsl(200 80% 95% / 0.2) 0%, transparent 3px);
+    pointer-events: none;
+  }
+
+  /* Frost border effect */
+  .frost-border {
+    position: relative;
+    border: 1px solid hsl(200 70% 85% / 0.3);
+  }
+
+  .frost-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      hsl(200 80% 90% / 0.5) 20%,
+      hsl(200 80% 95% / 0.8) 50%,
+      hsl(200 80% 90% / 0.5) 80%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    padding: 2px;
+    border-radius: inherit;
+    animation: frostSpread 2s ease forwards;
+    pointer-events: none;
   }
 
   .nordic-shadow {
     box-shadow: 0 4px 20px -5px hsl(215 30% 12% / 0.08);
+  }
+
+  /* Ice crystal decoration */
+  .ice-crystal {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .ice-crystal svg {
+    width: 100%;
+    height: 100%;
+    fill: hsl(200 80% 90% / 0.6);
+    animation: crystalSparkle 5s ease-in-out infinite;
+  }
+
+  .ice-crystal:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+  .ice-crystal:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
+  .ice-crystal:nth-child(3) { top: 60%; left: 8%; animation-delay: 2s; }
+  .ice-crystal:nth-child(4) { bottom: 20%; right: 5%; animation-delay: 3s; }
+
+  /* Floating snowflakes */
+  .snowflake {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: hsl(200 80% 95% / 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 90;
+    animation: snowflakeFloat 15s linear infinite;
+    box-shadow: 0 0 10px 2px hsl(200 80% 95% / 0.3);
+  }
+
+  .snowflake:nth-child(1) { left: 10%; animation-delay: 0s; width: 6px; height: 6px; }
+  .snowflake:nth-child(2) { left: 25%; animation-delay: 3s; width: 4px; height: 4px; }
+  .snowflake:nth-child(3) { left: 40%; animation-delay: 6s; }
+  .snowflake:nth-child(4) { left: 55%; animation-delay: 9s; width: 5px; height: 5px; }
+  .snowflake:nth-child(5) { left: 70%; animation-delay: 12s; width: 7px; height: 7px; }
+  .snowflake:nth-child(6) { left: 85%; animation-delay: 2s; width: 4px; height: 4px; }
+
+  /* Aurora borealis multi-layer */
+  .aurora-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .aurora-layer-1 {
+    background: linear-gradient(180deg,
+      hsl(200 70% 60% / 0.08) 0%,
+      hsl(160 70% 50% / 0.05) 30%,
+      transparent 70%
+    );
+    animation: auroraWave 12s ease-in-out infinite;
+  }
+
+  .aurora-layer-2 {
+    background: linear-gradient(180deg,
+      hsl(45 80% 55% / 0.04) 0%,
+      hsl(280 60% 60% / 0.03) 40%,
+      transparent 80%
+    );
+    animation: auroraWave 18s ease-in-out infinite reverse;
+    animation-delay: -3s;
   }
 
   .gallery-scroll-arctic {
@@ -159,7 +344,13 @@ const arcticStyles = `
     .animate-crystal,
     .animate-snow,
     .animate-breathe,
-    .hover-arctic {
+    .animate-sparkle,
+    .hover-arctic,
+    .ice-crystal svg,
+    .snowflake,
+    .aurora-layer-1,
+    .aurora-layer-2,
+    .frost-border::before {
       animation: none !important;
       transition: none !important;
     }
@@ -271,6 +462,24 @@ export function CasaGiardinoArcticDemo() {
           color: "hsl(215 30% 12%)",
         }}
       >
+        {/* Aurora Borealis Layers */}
+        <div className="aurora-layer aurora-layer-1" aria-hidden="true" />
+        <div className="aurora-layer aurora-layer-2" aria-hidden="true" />
+
+        {/* Floating Ice Crystals */}
+        {[...Array(4)].map((_, i) => (
+          <div key={`crystal-${i}`} className="ice-crystal" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14 8L20 8L15 12L17 18L12 14L7 18L9 12L4 8L10 8L12 2Z" />
+            </svg>
+          </div>
+        ))}
+
+        {/* Floating Snowflakes */}
+        {[...Array(6)].map((_, i) => (
+          <div key={`snow-${i}`} className="snowflake" aria-hidden="true" />
+        ))}
+
         {/* ═══════════════════════════════════════════════════════════════════════
             HERO - Nordic Light
         ═══════════════════════════════════════════════════════════════════════ */}

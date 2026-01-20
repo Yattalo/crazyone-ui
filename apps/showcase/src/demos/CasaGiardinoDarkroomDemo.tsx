@@ -132,6 +132,77 @@ const darkroomStyles = `
     }
   }
 
+  /* NEW: Developer tray liquid animation */
+  @keyframes developerLiquid {
+    0%, 100% {
+      transform: translateY(0) scaleX(1);
+      opacity: 0.1;
+    }
+    25% {
+      transform: translateY(-3px) scaleX(1.02);
+      opacity: 0.15;
+    }
+    50% {
+      transform: translateY(3px) scaleX(0.98);
+      opacity: 0.1;
+    }
+    75% {
+      transform: translateY(-2px) scaleX(1.01);
+      opacity: 0.12;
+    }
+  }
+
+  /* NEW: Light leak */
+  @keyframes lightLeak {
+    0%, 100% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    50% {
+      opacity: 0.1;
+      transform: translateX(100%);
+    }
+  }
+
+  /* NEW: Film advance */
+  @keyframes filmAdvance {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+  /* NEW: Safelight flicker */
+  @keyframes safelightFlicker {
+    0%, 90%, 100% {
+      opacity: 0.25;
+    }
+    92% {
+      opacity: 0.35;
+    }
+    94% {
+      opacity: 0.2;
+    }
+    96% {
+      opacity: 0.4;
+    }
+    98% {
+      opacity: 0.25;
+    }
+  }
+
+  /* NEW: Enlarger light cone */
+  @keyframes enlargerLight {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.1;
+    }
+  }
+
   .animate-safelight {
     animation: safelightPulse 4s ease-in-out infinite;
   }
@@ -180,6 +251,153 @@ const darkroomStyles = `
 
   .safelight-glow {
     background: radial-gradient(ellipse at top right, hsl(0 100% 25% / 0.15), transparent 60%);
+  }
+
+  .animate-safelight-flicker {
+    animation: safelightFlicker 10s ease-in-out infinite;
+  }
+
+  /* Atmospheric safelight lamp */
+  .safelight-lamp {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    width: 80px;
+    height: 40px;
+    background: hsl(0 100% 30%);
+    border-radius: 4px;
+    box-shadow:
+      0 0 60px 30px hsl(0 100% 30% / 0.3),
+      0 0 120px 60px hsl(0 100% 25% / 0.15);
+    animation: safelightFlicker 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .safelight-lamp::after {
+    content: '';
+    position: absolute;
+    bottom: -100vh;
+    left: 50%;
+    width: 200vw;
+    height: 100vh;
+    background: radial-gradient(ellipse at top, hsl(0 100% 25% / 0.1), transparent 70%);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  /* Developer tray */
+  .developer-tray {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      hsl(0 100% 25% / 0.05) 50%,
+      hsl(0 100% 20% / 0.1) 100%
+    );
+    animation: developerLiquid 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  /* Light leak effect */
+  .light-leak {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      hsl(30 100% 60% / 0.05) 50%,
+      transparent 100%
+    );
+    animation: lightLeak 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 40;
+  }
+
+  /* Film strip border with sprocket holes */
+  .film-strip-border {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    background: hsl(0 0% 6%);
+    pointer-events: none;
+    z-index: 60;
+  }
+
+  .film-strip-border.left {
+    left: 0;
+  }
+
+  .film-strip-border.right {
+    right: 0;
+  }
+
+  .film-strip-border::before,
+  .film-strip-border::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 10px;
+    background: hsl(0 0% 3%);
+    border-radius: 2px;
+  }
+
+  /* Multiple sprocket holes */
+  .sprocket-strip {
+    position: fixed;
+    top: 0;
+    width: 32px;
+    height: 200%;
+    background-image: repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 20px,
+      hsl(0 0% 3%) 20px,
+      hsl(0 0% 3%) 32px,
+      transparent 32px,
+      transparent 60px
+    );
+    pointer-events: none;
+    z-index: 61;
+    animation: filmAdvance 30s linear infinite;
+  }
+
+  .sprocket-strip.left {
+    left: 8px;
+  }
+
+  .sprocket-strip.right {
+    right: 8px;
+  }
+
+  /* Enlarger cone */
+  .enlarger-cone {
+    position: fixed;
+    top: 0;
+    left: 30%;
+    width: 40%;
+    height: 60vh;
+    background: conic-gradient(
+      from 180deg at 50% 0%,
+      transparent 35%,
+      hsl(0 0% 100% / 0.02) 45%,
+      hsl(0 0% 100% / 0.03) 50%,
+      hsl(0 0% 100% / 0.02) 55%,
+      transparent 65%
+    );
+    animation: enlargerLight 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 30;
   }
 
   .contact-frame {
@@ -231,7 +449,13 @@ const darkroomStyles = `
     .animate-develop,
     .animate-grain,
     .animate-contact,
-    .hover-darkroom {
+    .animate-safelight-flicker,
+    .hover-darkroom,
+    .safelight-lamp,
+    .developer-tray,
+    .light-leak,
+    .sprocket-strip,
+    .enlarger-cone {
       animation: none !important;
       transition: none !important;
     }
@@ -343,6 +567,24 @@ export function CasaGiardinoDarkroomDemo() {
           color: "hsl(0 0% 95%)",
         }}
       >
+        {/* Safelight Lamp */}
+        <div className="safelight-lamp hidden lg:block" aria-hidden="true" />
+
+        {/* Film Strip Borders with Sprocket Holes */}
+        <div className="film-strip-border left hidden lg:block" aria-hidden="true" />
+        <div className="film-strip-border right hidden lg:block" aria-hidden="true" />
+        <div className="sprocket-strip left hidden lg:block" aria-hidden="true" />
+        <div className="sprocket-strip right hidden lg:block" aria-hidden="true" />
+
+        {/* Developer Tray Chemical Effect */}
+        <div className="developer-tray hidden lg:block" aria-hidden="true" />
+
+        {/* Light Leak */}
+        <div className="light-leak hidden lg:block" aria-hidden="true" />
+
+        {/* Enlarger Light Cone */}
+        <div className="enlarger-cone hidden lg:block" aria-hidden="true" />
+
         {/* ═══════════════════════════════════════════════════════════════════════
             HERO - Darkroom Aesthetic
         ═══════════════════════════════════════════════════════════════════════ */}

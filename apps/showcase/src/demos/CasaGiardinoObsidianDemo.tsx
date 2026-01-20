@@ -97,6 +97,56 @@ const obsidianStyles = `
     50% { transform: translateY(-5px); }
   }
 
+  /* NEW: Obsidian reflection */
+  @keyframes obsidianReflect {
+    0%, 100% {
+      opacity: 0.1;
+      transform: translateX(-100%) skewX(-15deg);
+    }
+    50% {
+      opacity: 0.3;
+      transform: translateX(200%) skewX(-15deg);
+    }
+  }
+
+  /* NEW: Gold particle float */
+  @keyframes goldParticleFloat {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    90% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* NEW: Marble vein shimmer */
+  @keyframes marbleVein {
+    0%, 100% {
+      opacity: 0.02;
+    }
+    50% {
+      opacity: 0.05;
+    }
+  }
+
+  /* NEW: Luxury glow pulse */
+  @keyframes luxuryGlow {
+    0%, 100% {
+      filter: drop-shadow(0 0 20px hsl(45 90% 55% / 0.1));
+    }
+    50% {
+      filter: drop-shadow(0 0 40px hsl(45 90% 55% / 0.2));
+    }
+  }
+
   .animate-gold-shimmer {
     background: linear-gradient(90deg, transparent 0%, hsl(45 90% 55% / 0.3) 50%, transparent 100%);
     background-size: 200% 100%;
@@ -131,14 +181,74 @@ const obsidianStyles = `
     box-shadow: 0 30px 60px -15px hsl(45 90% 55% / 0.15);
   }
 
+  .animate-luxury-glow {
+    animation: luxuryGlow 4s ease-in-out infinite;
+  }
+
   .glass-dark {
     background: linear-gradient(135deg,
       hsl(240 5% 10% / 0.95) 0%,
       hsl(240 5% 8% / 0.9) 100%);
     backdrop-filter: blur(20px);
     border: 1px solid hsl(240 5% 18%);
+    position: relative;
+    overflow: hidden;
   }
 
+  /* Obsidian reflection overlay */
+  .glass-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 0%,
+      hsl(0 0% 100% / 0.05) 25%,
+      transparent 50%
+    );
+    animation: obsidianReflect 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Black marble texture */
+  .marble-texture {
+    position: relative;
+  }
+
+  .marble-texture::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='marble'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.01' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23marble)'/%3E%3C/svg%3E");
+    opacity: 0.015;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    animation: marbleVein 6s ease-in-out infinite;
+  }
+
+  /* Floating gold particles */
+  .gold-particle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: hsl(45 90% 55%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100;
+    animation: goldParticleFloat 20s linear infinite;
+    box-shadow: 0 0 10px 2px hsl(45 90% 55% / 0.3);
+  }
+
+  .gold-particle:nth-child(1) { left: 5%; animation-delay: 0s; width: 3px; height: 3px; }
+  .gold-particle:nth-child(2) { left: 15%; animation-delay: 4s; width: 2px; height: 2px; }
+  .gold-particle:nth-child(3) { left: 25%; animation-delay: 8s; }
+  .gold-particle:nth-child(4) { left: 45%; animation-delay: 2s; width: 3px; height: 3px; }
+  .gold-particle:nth-child(5) { left: 65%; animation-delay: 10s; width: 2px; height: 2px; }
+  .gold-particle:nth-child(6) { left: 80%; animation-delay: 6s; }
+  .gold-particle:nth-child(7) { left: 92%; animation-delay: 14s; width: 3px; height: 3px; }
+
+  /* Enhanced gold border with glow */
   .gold-border {
     position: relative;
   }
@@ -171,7 +281,11 @@ const obsidianStyles = `
     .animate-fade-black,
     .animate-pulse-gold,
     .animate-float,
-    .hover-obsidian {
+    .animate-luxury-glow,
+    .hover-obsidian,
+    .gold-particle,
+    .glass-dark::before,
+    .marble-texture::after {
       animation: none !important;
       transition: none !important;
     }
@@ -276,13 +390,18 @@ export function CasaGiardinoObsidianDemo() {
     <>
       <style>{obsidianStyles}</style>
       <div
-        className="relative overflow-x-hidden"
+        className="relative overflow-x-hidden marble-texture"
         style={{
           fontFamily: "'Satoshi', sans-serif",
           backgroundColor: "hsl(240 5% 6%)",
           color: "hsl(40 10% 95%)",
         }}
       >
+        {/* Floating Gold Particles */}
+        {[...Array(7)].map((_, i) => (
+          <div key={`gold-${i}`} className="gold-particle" aria-hidden="true" />
+        ))}
+
         {/* ═══════════════════════════════════════════════════════════════════════
             HERO - Midnight Luxury
         ═══════════════════════════════════════════════════════════════════════ */}

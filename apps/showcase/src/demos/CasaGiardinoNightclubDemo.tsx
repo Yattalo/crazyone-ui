@@ -129,6 +129,94 @@ const nightclubStyles = `
     }
   }
 
+  /* NEW: Disco ball reflections */
+  @keyframes discoBall {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes discoReflection {
+    0%, 100% {
+      opacity: 0.3;
+      transform: translate(0, 0);
+    }
+    25% {
+      opacity: 0.7;
+      transform: translate(20px, -15px);
+    }
+    50% {
+      opacity: 0.4;
+      transform: translate(-10px, 20px);
+    }
+    75% {
+      opacity: 0.8;
+      transform: translate(15px, 10px);
+    }
+  }
+
+  /* NEW: Smoke/fog drift */
+  @keyframes smokeDrift {
+    0% {
+      transform: translateX(-50%) translateY(0) scale(1);
+      opacity: 0.15;
+    }
+    50% {
+      transform: translateX(-30%) translateY(-30px) scale(1.2);
+      opacity: 0.2;
+    }
+    100% {
+      transform: translateX(-50%) translateY(0) scale(1);
+      opacity: 0.15;
+    }
+  }
+
+  /* NEW: Spotlight sweep */
+  @keyframes spotlightSweep {
+    0% {
+      transform: rotate(-30deg);
+    }
+    50% {
+      transform: rotate(30deg);
+    }
+    100% {
+      transform: rotate(-30deg);
+    }
+  }
+
+  /* NEW: Floor glow pulse */
+  @keyframes floorGlow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.05);
+    }
+  }
+
+  /* NEW: Laser beam enhanced */
+  @keyframes laserBeamSweep {
+    0% {
+      transform: translateX(-100%) rotate(-5deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(200%) rotate(5deg);
+      opacity: 0;
+    }
+  }
+
   .animate-strobe {
     animation: strobeFlash 0.1s ease-in-out infinite;
   }
@@ -236,6 +324,157 @@ const nightclubStyles = `
     to { height: 30px; }
   }
 
+  /* Disco ball */
+  .disco-ball {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 30% 30%,
+      hsl(0 0% 90%) 0%,
+      hsl(0 0% 50%) 40%,
+      hsl(0 0% 20%) 100%
+    );
+    box-shadow:
+      0 0 30px hsl(0 0% 100% / 0.2),
+      inset 0 0 20px hsl(0 0% 0% / 0.5);
+    animation: discoBall 20s linear infinite;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* Disco reflections (scattered squares) */
+  .disco-reflection {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: hsl(0 0% 100%);
+    pointer-events: none;
+    z-index: 90;
+    animation: discoReflection 3s ease-in-out infinite;
+  }
+
+  .disco-reflection:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; background: hsl(280 100% 80%); }
+  .disco-reflection:nth-child(2) { top: 25%; left: 70%; animation-delay: 0.3s; background: hsl(200 100% 80%); }
+  .disco-reflection:nth-child(3) { top: 40%; left: 30%; animation-delay: 0.6s; background: hsl(45 100% 80%); }
+  .disco-reflection:nth-child(4) { top: 55%; left: 80%; animation-delay: 0.9s; background: hsl(280 100% 80%); }
+  .disco-reflection:nth-child(5) { top: 65%; left: 15%; animation-delay: 1.2s; background: hsl(200 100% 80%); }
+  .disco-reflection:nth-child(6) { top: 75%; left: 60%; animation-delay: 1.5s; background: hsl(45 100% 80%); }
+  .disco-reflection:nth-child(7) { top: 35%; left: 50%; animation-delay: 1.8s; background: hsl(280 100% 80%); }
+  .disco-reflection:nth-child(8) { top: 85%; left: 40%; animation-delay: 2.1s; background: hsl(200 100% 80%); }
+
+  /* Smoke/fog machine effect */
+  .smoke-layer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    width: 200vw;
+    height: 40vh;
+    background: radial-gradient(
+      ellipse at center bottom,
+      hsl(270 30% 20% / 0.4) 0%,
+      hsl(270 20% 10% / 0.2) 40%,
+      transparent 70%
+    );
+    animation: smokeDrift 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  /* Spotlights */
+  .spotlight {
+    position: fixed;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background: conic-gradient(
+      from 180deg at 50% 0%,
+      transparent 35%,
+      hsl(280 100% 60% / 0.1) 45%,
+      hsl(280 100% 60% / 0.15) 50%,
+      hsl(280 100% 60% / 0.1) 55%,
+      transparent 65%
+    );
+    pointer-events: none;
+    z-index: 60;
+    transform-origin: top center;
+    animation: spotlightSweep 6s ease-in-out infinite;
+  }
+
+  .spotlight.left {
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  .spotlight.right {
+    right: 20%;
+    background: conic-gradient(
+      from 180deg at 50% 0%,
+      transparent 35%,
+      hsl(200 100% 50% / 0.1) 45%,
+      hsl(200 100% 50% / 0.15) 50%,
+      hsl(200 100% 50% / 0.1) 55%,
+      transparent 65%
+    );
+    animation-delay: -3s;
+  }
+
+  /* Enhanced laser beams */
+  .laser-beam {
+    position: fixed;
+    height: 3px;
+    pointer-events: none;
+    z-index: 80;
+    animation: laserBeamSweep 5s linear infinite;
+  }
+
+  .laser-purple {
+    width: 400px;
+    top: 25%;
+    background: linear-gradient(90deg, transparent, hsl(280 100% 60%), hsl(280 100% 70%), hsl(280 100% 60%), transparent);
+    box-shadow: 0 0 15px hsl(280 100% 60%), 0 0 30px hsl(280 100% 60%);
+    animation-delay: 0s;
+  }
+
+  .laser-cyan {
+    width: 350px;
+    top: 50%;
+    background: linear-gradient(90deg, transparent, hsl(200 100% 50%), hsl(200 100% 60%), hsl(200 100% 50%), transparent);
+    box-shadow: 0 0 15px hsl(200 100% 50%), 0 0 30px hsl(200 100% 50%);
+    animation-delay: 1.5s;
+  }
+
+  .laser-gold {
+    width: 300px;
+    top: 75%;
+    background: linear-gradient(90deg, transparent, hsl(45 100% 60%), hsl(45 100% 70%), hsl(45 100% 60%), transparent);
+    box-shadow: 0 0 15px hsl(45 100% 60%), 0 0 30px hsl(45 100% 60%);
+    animation-delay: 3s;
+  }
+
+  /* Dance floor glow */
+  .floor-glow {
+    position: fixed;
+    bottom: 0;
+    left: 25%;
+    right: 25%;
+    height: 10px;
+    background: linear-gradient(90deg,
+      hsl(280 100% 60%),
+      hsl(200 100% 50%),
+      hsl(45 100% 60%),
+      hsl(280 100% 60%)
+    );
+    filter: blur(20px);
+    animation: floorGlow 2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 55;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-strobe,
     .animate-neon,
@@ -244,7 +483,13 @@ const nightclubStyles = `
     .animate-slide-up,
     .animate-color-shift,
     .hover-nightclub,
-    .eq-bar {
+    .eq-bar,
+    .disco-ball,
+    .disco-reflection,
+    .smoke-layer,
+    .spotlight,
+    .laser-beam,
+    .floor-glow {
       animation: none !important;
       transition: none !important;
     }
@@ -357,6 +602,29 @@ export function CasaGiardinoNightclubDemo() {
           color: "hsl(280 10% 95%)",
         }}
       >
+        {/* Disco Ball */}
+        <div className="disco-ball hidden lg:block" aria-hidden="true" />
+
+        {/* Disco Reflections */}
+        {[...Array(8)].map((_, i) => (
+          <div key={`disco-${i}`} className="disco-reflection hidden lg:block" aria-hidden="true" />
+        ))}
+
+        {/* Laser Beams */}
+        <div className="laser-beam laser-purple hidden lg:block" aria-hidden="true" />
+        <div className="laser-beam laser-cyan hidden lg:block" aria-hidden="true" />
+        <div className="laser-beam laser-gold hidden lg:block" aria-hidden="true" />
+
+        {/* Spotlights */}
+        <div className="spotlight left hidden lg:block" aria-hidden="true" />
+        <div className="spotlight right hidden lg:block" aria-hidden="true" />
+
+        {/* Smoke/Fog Layer */}
+        <div className="smoke-layer hidden lg:block" aria-hidden="true" />
+
+        {/* Dance Floor Glow */}
+        <div className="floor-glow hidden lg:block" aria-hidden="true" />
+
         {/* ═══════════════════════════════════════════════════════════════════════
             HERO - Nightclub Energy
         ═══════════════════════════════════════════════════════════════════════ */}
